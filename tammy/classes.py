@@ -35,5 +35,11 @@ class record:
         self.generate_key()
     def generate_key(self):
         # TODO generate key authorYEAR
-        # TODO while not unique increment letter
-        pass
+        auth = self.content['author'][0]['family']
+        year = self.content['issued']['date_parts'][0][0]
+        tentative_key = auth + str(year)
+        if not tentative_key in self.library.keys():
+            self.key = tentative_key
+        else :
+            # TODO non-unique keys
+            pass
