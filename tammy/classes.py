@@ -43,6 +43,6 @@ class record:
         else :
             alphabet = list(string.ascii_lowercase)
             i = 0
-            while(not tentative_key+alphabet[i] in self.library.keys()):
+            while(tentative_key+alphabet[i] in self.library.keys()):
                 i = i + 1
             self.key = tentative_key + alphabet[i]
