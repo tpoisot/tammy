@@ -1,6 +1,4 @@
 import requests as re
-import yaml
-import json
 
 def get_ref_from_doi(doi, base_url='http://dx.doi.org/'):
     request_url = base_url + doi
