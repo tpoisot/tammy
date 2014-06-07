@@ -36,7 +36,7 @@ class record:
         self.generate_key()
     def generate_key(self):
         auth = self.content['author'][0]['family']
-        year = self.content['issued']['date_parts'][0][0]
+        year = self.content['issued']['date-parts'][0][0]
         tentative_key = auth + str(year)
         if not tentative_key in self.library.keys():
             self.key = tentative_key
