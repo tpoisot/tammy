@@ -2,6 +2,7 @@ import os
 import datetime
 from os.path import expanduser
 from os.path import isfile
+import string
 
 class library:
     def __init__(self):
@@ -34,12 +35,14 @@ class record:
         ## TODO read key
         self.generate_key()
     def generate_key(self):
-        # TODO generate key authorYEAR
         auth = self.content['author'][0]['family']
         year = self.content['issued']['date_parts'][0][0]
         tentative_key = auth + str(year)
         if not tentative_key in self.library.keys():
             self.key = tentative_key
         else :
-            # TODO non-unique keys
-            pass
+            alphabet = list(string.ascii_lowercase)
+            i = 0
+            while(not tentative_key+alphabet[i] in self.library.keys()):
+                i = i + 1
+            self.key = tentative_key + alphabet[i]
