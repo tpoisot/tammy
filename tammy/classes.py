@@ -56,7 +56,7 @@ class record:
         if not 'key' in self.content:
             self.generate_key()
     def generate_key(self):
-        """Generates a citation key from the record information
+        """ Generates a citation key from the record information
 
         At the moment, citations keys are created as FirstauthorYEAR plus
         one letter if this is required to make the citation key unique. Note
@@ -76,13 +76,23 @@ class record:
                 i = i + 1
             self.content['id'] = tentative_key + alphabet[i]
     def key(self):
-        """Outputs the unique citation key for the record
+        """ Outputs the unique citation key for the record
 
         Returns:
             a unicode string with the citation key
         """
         return self.content['id']
     def write(self):
+        """ Writes the content of a record to disk
+
+        This will write the content of the record in the ``records``
+        folder of the ``bib_dir`` folder. The filename is the unique record
+        key and the ``.yaml`` extension.
+
+        This method is usually called by ``library.write()``, but it can be
+        used to update the content of any file.
+
+        """
         path = self.library.config['bib_dir']+'records/'+self.key()+'.yaml'
         with open(path, 'w') as outfile:
             outfile.write(yaml.safe_dump(self.content))

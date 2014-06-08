@@ -14,8 +14,7 @@ def from_crossref_doi(doi, base_url='http://dx.doi.org/'):
         A `dict` representation of a json-csl bibliograghic record
 
     Raises:
-        ValueError: No DOI is found (response code of the request is not `200 OK`)
-
+        ValueError: The response code is not ``200``
     """
     request_url = base_url + doi
     headers = {b'Accept': 'application/citeproc+json'}
@@ -35,8 +34,18 @@ def from_peerj(pubid, pubtype='article'):
     Args:
         pubid: An integer (or string) giving the article/preprint id
         pubtype: either article or preprint
+
+    Raises:
+        ValueError: The ``pubtype`` is neither article nor preprint
+        TypeError: The ``pubid`` is neither a string nor an integer
     """
-    peerj_url = 'https://peerj.com' + pubtype + 's/' + str(pubid) + '.json'
+    if not (isinstance(pubid, int) or isinstance(pubid, str)):
+        raise TypeError("The pubid must be a string or an integer")
+    if isinstance(pubid, int):
+        pubid = str(pubid)
+    if not pubtype in ['article', 'preprint']:
+        raise ValueError("pubtype must be either article or preprint")
+    peerj_url = 'https://peerj.com' + pubtype + 's/' + pubid + '.json'
     request_output = re.get(peerj_url)
     if request_output.status_code == 200 :
         return from_crossref_doi(request_output.json()['doi'])
