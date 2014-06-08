@@ -7,10 +7,10 @@ import yaml
 
 class library:
     def __init__(self):
-        if isfile(expanduser("~/.tammy.json")):
+        if isfile(expanduser("~/.tammy.yaml")):
             ## read the config file
-            with open(expanduser("~/.tammy.json"), 'r') as cfile:
-                self.config = json.load(cfile)
+            with open(expanduser("~/.tammy.yaml"), 'r') as cfile:
+                self.config = yaml.load(cfile)
         else :
             home = expanduser("~")
             self.config = dict()
@@ -19,6 +19,17 @@ class library:
         self.records = dict()
         self.read(force=True)
     def read(self, force=False):
+        """Read the yaml files from the references folder
+
+        This method is called when the ``library`` class is instanciated,
+        and it ensures that all records are loaded. Because it calls the
+        ``new`` method of the ``record`` class, if for some weird reason
+        a file has no ``id`` field (*e.g.* you added it yourself), the key
+        will be generated at this point.
+
+        Args:
+            force: a boolean to force the method to read all files, or only ...
+        """
         r_path = self.config['bib_dir'] + 'records/'
         records = [f for f in listdir(r_path) if isfile(join(r_path, f))]
         for f in records:
