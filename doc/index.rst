@@ -13,7 +13,8 @@ minimalistic, scriptable, hacker-ish way.
 
    >>> import tammy
    >>> lib = tammy.library()
-   >>> lib.new(tammy.get_ref_from_doi('10.7717/peerj.251'))
+   >>> lib.new(tammy.from_peerj('403', 'preprint'))
+   >>> lib.new(tammy.from_crossref_doi('10.7717/peerj.426'))
    >>> lib.write()
 
 

@@ -3,6 +3,6 @@ from os.path import expanduser
 from os.path import isfile
 
 from classes import library, record
-from crossref import get_ref_from_doi
+from services import from_crossref_doi, from_peerj
 
 
