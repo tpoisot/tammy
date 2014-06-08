@@ -8,8 +8,16 @@ Welcome to tammy's documentation!
 
 .. module:: tammy
 
-Classes
-=======
+User guide
+----------
+
+.. toctree::
+   :maxdepth: 2
+
+   user/intro
+
+API guide
+---------
 
 .. autoclass:: library
    :members:
