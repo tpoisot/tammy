@@ -45,6 +45,9 @@ class record:
         if not 'key' in self.content:
             self.generate_key()
     def generate_key(self):
+        """Generates a citation key from the record information
+
+        """
         self.changed = True
         auth = self.content['author'][0]['family']
         year = self.content['issued']['date-parts'][0][0]

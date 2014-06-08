@@ -1,4 +1,4 @@
-yaml
+pyyaml
 json
 requests
 coveralls
