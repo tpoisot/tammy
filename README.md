@@ -6,6 +6,8 @@ from the command line. It's written in `python`, and uses `yaml` files in
 the citeproc format to store the references. It has neat features such as
 integration with the CrossRef API.
 
+[READ THE DOC](http://tammy.readthedocs.org/en/latest/index.html#)
+
 `tammy` has been designed to meet *my* needs: a minimalistic references
 manager, command-line based, scriptable, with a hard-to-corrupt database,
 that will play nicely with `pandoc`, and that is **not** based on `bibtex`.
