@@ -47,6 +47,10 @@ class record:
     def generate_key(self):
         """Generates a citation key from the record information
 
+        At the moment, citations keys are created as FirstauthorYEAR plus
+        one letter if this is required to make the citation key unique. Note
+        that the citation key is also the filename of the record, so that a
+        record whose key is ``Doe2004`` will be written at ``Doe2004.yaml``.
         """
         self.changed = True
         auth = self.content['author'][0]['family']
@@ -61,6 +65,11 @@ class record:
                 i = i + 1
             self.content['key'] = tentative_key + alphabet[i]
     def key(self):
+        """Outputs the unique citation key for the record
+
+        Returns:
+            a unicode string with the citation key
+        """
         return self.content['key']
     def write(self):
         path = self.library.config['bib_dir']+'records/'+self.key()+'.yaml'
