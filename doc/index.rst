@@ -11,10 +11,10 @@ Welcome to tammy's documentation!
 Classes
 =======
 
-.. autodoc:: tammy.library
+.. autoclass:: library
    :members:
 
-.. autodoc:: tammy.record
+.. autoclass:: tammy.record
    :members:
 
 Indices and tables
