@@ -11,6 +11,19 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+.. automodule:: tammy
+
+Classes
+=======
+
+.. autodoc:: tammy.classes
+   :members:
+
+CrossRef
+========
+
+.. autodoc:: tammy.crossref
+   :members:
 
 
 Indices and tables
