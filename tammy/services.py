@@ -45,7 +45,7 @@ def from_peerj(pubid, pubtype='article'):
         pubid = str(pubid)
     if not pubtype in ['article', 'preprint']:
         raise ValueError("pubtype must be either article or preprint")
-    peerj_url = 'https://peerj.com' + pubtype + 's/' + pubid + '.json'
+    peerj_url = 'https://peerj.com/' + pubtype + 's/' + pubid + '.json'
     request_output = re.get(peerj_url)
     if request_output.status_code == 200 :
         return from_crossref_doi(request_output.json()['doi'])
