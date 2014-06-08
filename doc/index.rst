@@ -6,25 +6,16 @@
 Welcome to tammy's documentation!
 =================================
 
-Contents:
-
-.. toctree::
-   :maxdepth: 2
-
-.. automodule:: tammy
+.. module:: tammy
 
 Classes
 =======
 
-.. autodoc:: tammy.classes
+.. autodoc:: tammy.library
    :members:
 
-CrossRef
-========
-
-.. autodoc:: tammy.crossref
+.. autodoc:: tammy.record
    :members:
-
 
 Indices and tables
 ==================
