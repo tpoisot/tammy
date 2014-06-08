@@ -6,24 +6,32 @@
 Welcome to tammy's documentation!
 =================================
 
-.. module:: tammy
+``tammy`` is a python module to manage your bibliography in a sane,
+minimalistic, scriptable, hacker-ish way.
+
+::
+
+   >>> import tammy
+   >>> lib = tammy.library()
+   >>> lib.new(tammy.get_ref_from_doi('10.7717/peerj.251'))
+   >>> lib.write()
+
 
 User guide
 ----------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    user/intro
 
 API guide
 ---------
 
-.. autoclass:: library
-   :members:
+.. toctree::
+   :maxdepth: 2
 
-.. autoclass:: tammy.record
-   :members:
+   dev/classes
 
 Indices and tables
 ==================

@@ -57,20 +57,20 @@ class record:
         year = self.content['issued']['date-parts'][0][0]
         tentative_key = auth + str(year)
         if not tentative_key in self.library.keys():
-            self.content['key'] = tentative_key
+            self.content['id'] = tentative_key
         else :
             alphabet = list(string.ascii_lowercase)
             i = 0
             while(tentative_key+alphabet[i] in self.library.keys()):
                 i = i + 1
-            self.content['key'] = tentative_key + alphabet[i]
+            self.content['id'] = tentative_key + alphabet[i]
     def key(self):
         """Outputs the unique citation key for the record
 
         Returns:
             a unicode string with the citation key
         """
-        return self.content['key']
+        return self.content['id']
     def write(self):
         path = self.library.config['bib_dir']+'records/'+self.key()+'.yaml'
         with open(path, 'w') as outfile:
