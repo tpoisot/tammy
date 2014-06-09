@@ -27,9 +27,10 @@ def from_crossref_doi(doi, base_url='http://dx.doi.org/'):
 def from_peerj(pubid, pubtype='article'):
     """ Get a JSON record from a PeerJ article or preprint
 
-    At the moment, PeerJ does not seem to expose its papers in citeproc-json
-    format, so this function looks for the DOI, and then uses crossref to
-    get the information. This is not optimal, but it works.
+    PeerJ just rolled out an experimental citeproc-json feed for
+    their articles (June 8, 2014). This function first attempts to use
+    it first, and if it fails, I default to getting the doi from
+    the JSON file, then using CrossRef.
 
     Args:
         pubid: An integer (or string) giving the article/preprint id
@@ -45,10 +46,17 @@ def from_peerj(pubid, pubtype='article'):
         pubid = str(pubid)
     if not pubtype in ['article', 'preprint']:
         raise ValueError("pubtype must be either article or preprint")
-    peerj_url = 'https://peerj.com/' + pubtype + 's/' + pubid + '.json'
+    peerj_url = 'https://peerj.com/' + pubtype + 's/' + pubid + '.citeproc'
     request_output = re.get(peerj_url)
     if request_output.status_code == 200 :
-        return from_crossref_doi(request_output.json()['doi'])
+        return request_output.json()
+    elif request_output.status_code == 404 :
+        peerj_url = 'https://peerj.com/' + pubtype + 's/' + pubid + '.json'
+        jrequest_output = re.get(peerj_url)
+        if jrequest_output.status_code == 200 :
+            return from_crossref_doi(request_output.json()['doi'])
+        else :
+            raise ValueError("Both methods to retrieve the PeerJ info failed")
     else :
         raise ValueError("No PeerJ " + pubtype + " with this ID")
 
