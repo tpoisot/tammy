@@ -4,6 +4,8 @@ from os.path import expanduser
 from os.path import isfile, join
 import string
 import yaml
+import IO
+import cleanup
 
 class library:
     def __init__(self):
@@ -15,6 +17,7 @@ class library:
             home = expanduser("~")
             self.config = dict()
             self.config['bib_dir'] = home + "/.bib/"
+        self.config['bib_dir'] = expanduser(self.config['bib_dir'])
         self.created = datetime.datetime.now()
         self.records = dict()
         self.read(force=True)
@@ -47,13 +50,26 @@ class library:
         self.records[new_record.key()] = new_record
     def keys(self):
         return self.records.keys()
+    def export(self, path=expanduser("~"), keys=None, output='citeproc-json'):
+        if not keys == None :
+            keys = [k for k in self.keys() if k in keys]
+        else :
+            keys = self.keys()
+        records = []
+        for k ,v in self.records.iteritems():
+            if k in keys:
+                records.append(v.content)
+        if not output in IO.serializer.keys():
+            raise KeyError("There is no "+output+" serializer at the moment. Write one?")
+        IO.serializer[output](records, path)
+        pass
 
 class record:
     def __init__(self, library, content):
         self.changed = None
-        self.content = content
+        self.content = cleanup.clean_all(content)
         self.library = library
-        if not 'key' in self.content:
+        if not 'id' in self.content:
             self.generate_key()
     def generate_key(self):
         """ Generates a citation key from the record information
