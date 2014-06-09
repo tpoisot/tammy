@@ -50,9 +50,7 @@ class library:
         self.records[new_record.key()] = new_record
     def keys(self):
         return self.records.keys()
-    def export(self, path=None, keys=None, output='citeproc-json'):
-        if path == None :
-            path = expanduser(self.config['bib_dir'])
+    def export(self, path=expanduser("~/.pandoc"), keys=None, output='citeproc-json'):
         if not keys == None :
             keys = [k for k in self.keys() if k in keys]
         else :
