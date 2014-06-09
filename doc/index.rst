@@ -25,6 +25,7 @@ User guide
    :maxdepth: 1
 
    user/intro
+   user/first
 
 API guide
 ---------
