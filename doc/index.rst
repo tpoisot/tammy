@@ -13,8 +13,13 @@ minimalistic, scriptable, hacker-ish way.
 
    >>> import tammy
    >>> lib = tammy.library()
-   >>> lib.new(tammy.from_peerj('403', 'preprint'))
    >>> lib.new(tammy.from_crossref_doi('10.7717/peerj.426'))
+   >>> lib.keys()
+   ['leh14']
+   >>> lib.records['leh14'].generate_key(tammy.keygen.AuthorYear)
+   >>> lib.keys()
+   ['Lehiy2014']
+   >>> lib.new(tammy.from_peerj('403', 'preprint'))
    >>> lib.write()
 
 
@@ -34,6 +39,7 @@ API guide
    :maxdepth: 2
 
    dev/classes
+   dev/keygen
 
 Indices and tables
 ==================
