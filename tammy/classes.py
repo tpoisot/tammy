@@ -56,7 +56,7 @@ class library:
         This function will loop through all the references, and if the record
         id do not match with the key in the records dict, it will fix things
         up. Additionally, this function will rename the file in the references
-        folder.
+        folder, and make sure that the linked files are renamed too.
 
         """
         for k, v in self.records.iteritems():
@@ -66,6 +66,9 @@ class library:
                 nfile = join(self.config['bib_dir'], 'records', v.key()+'.yaml')
                 if isfile(ofile):
                     os.rename(ofile, nfile)
+                if 'files' in v.content:
+                    for fk, fv in v.content['files'].iteritems():
+                        v.attach(fv, title=fk)
             else :
                 self.records[v.key()].write()
     def keys(self):
@@ -120,6 +123,8 @@ class record:
             title = str(len(self.content['files'])+1)
         nfile = self.key()+'_'+title+fExt
         os.rename(fpath, join(self.library.config['bib_dir'], 'files', nfile))
+        self.content['files'][title] = nfile
+        self.write()
     def write(self):
         """ Writes the content of a record to disk
 

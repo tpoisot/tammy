@@ -1,7 +1,24 @@
+# -*- coding: utf-8 -*-
+
 import string
 import unicodedata
 
 def makeunique(r, tentative_key):
+    """ Make a citation key unique
+
+    This function will perform the following steps, in order:
+
+        #. encode the key in ascii to remove any funky characters, so that
+        for example, ``çél2014`` will become ``cel2014``.
+
+        #. check that the key if unique in the library. If this is not the
+        case, then it will loop through all (lowercase) letters, append them
+        to the key, and if this is unique, write it.
+
+    Returns:
+        Nothing, but changes the ``id`` key of the ``content`` of the record.
+
+    """
     tentative_key = unicodedata.normalize('NFKD', tentative_key).encode('ascii', 'ignore')
     if not tentative_key in r.library.keys():
         r.content['id'] = tentative_key
