@@ -19,9 +19,12 @@ def clean_fields(record):
 def clean_arrayed(record, field):
     """ Converts arrayed fields for use in pandoc-citeproc
 
-    This is quite a ugly thing to do but pandoc-citeproc
-    has very strict preconceptions of how some fields should
-    be formatted, so for the moment I must comply with it
+    This is quite a ugly thing to do but pandoc-citeproc has very strict
+    preconceptions of how some fields should be formatted, so for the moment
+    I must comply with it.
+
+    This is *currently* needed for ``pandoc``, but has been fixed in the
+    git version, so this function will most likely be removed later on.
 
     Args:
         record: the ``dict`` representation

@@ -1,11 +1,12 @@
 import datetime
+import os
 from os import listdir
 from os.path import expanduser
 from os.path import isfile, join
-import string
 import yaml
 import IO
 import cleanup
+import keygen
 
 class library:
     def __init__(self):
@@ -33,7 +34,7 @@ class library:
         Args:
             force: a boolean to force the method to read all files, or only ...
         """
-        r_path = self.config['bib_dir'] + 'records/'
+        r_path = join(self.config['bib_dir'], 'records')
         records = [f for f in listdir(r_path) if isfile(join(r_path, f))]
         for f in records:
             with open(join(r_path, f), 'r') as r_file:
@@ -48,6 +49,25 @@ class library:
     def new(self, content):
         new_record = record(self, content)
         self.records[new_record.key()] = new_record
+        self.write()
+    def update(self):
+        """ Update the keys in the library dict
+
+        This function will loop through all the references, and if the record
+        id do not match with the key in the records dict, it will fix things
+        up. Additionally, this function will rename the file in the references
+        folder.
+
+        """
+        for k, v in self.records.iteritems():
+            if not k == v.key():
+             self.records[v.key()] = self.records.pop(k)
+             ofile = join(self.config['bib_dir'], 'records', k+'.yaml')
+             nfile = join(self.config['bib_dir'], 'records', v.key()+'.yaml')
+             if isfile(ofile):
+                 os.rename(ofile, nfile)
+            else :
+            self.records[v.keys()].write()
     def keys(self):
         return self.records.keys()
     def export(self, path=expanduser("~/.pandoc"), keys=None, output='citeproc-json'):
@@ -71,7 +91,7 @@ class record:
         self.library = library
         if not 'id' in self.content:
             self.generate_key()
-    def generate_key(self):
+    def generate_key(self, keymaker=keygen.autYr):
         """ Generates a citation key from the record information
 
         At the moment, citations keys are created as FirstauthorYEAR plus
@@ -80,17 +100,8 @@ class record:
         record whose key is ``Doe2004`` will be written at ``Doe2004.yaml``.
         """
         self.changed = True
-        auth = self.content['author'][0]['family']
-        year = self.content['issued']['date-parts'][0][0]
-        tentative_key = auth + str(year)
-        if not tentative_key in self.library.keys():
-            self.content['id'] = tentative_key
-        else :
-            alphabet = list(string.ascii_lowercase)
-            i = 0
-            while(tentative_key+alphabet[i] in self.library.keys()):
-                i = i + 1
-            self.content['id'] = tentative_key + alphabet[i]
+        keygen.makeunique(self, keymaker(self))
+        self.library.update()
     def key(self):
         """ Outputs the unique citation key for the record
 

@@ -16,6 +16,7 @@ file must be stored at ``$HOME/.tammy.yaml``. The ``bib_dir`` variable will
 give the root of your library. By default, this is ``$HOME/.bib``. You can
 change it with ::
 
-   - bib_dir = $HOME/.references
+   bib_dir = $HOME/.references
 
-When ``tammy`` will read the content of your library, it will go look here.
+When ``tammy`` will read the content of your library, it will go look for
+configuration options here.
