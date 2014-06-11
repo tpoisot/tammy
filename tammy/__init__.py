@@ -1,3 +1,7 @@
+"""
+.. automodule:: tammy
+"""
+
 import os
 from os.path import expanduser
 from os.path import isfile

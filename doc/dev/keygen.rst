@@ -5,6 +5,6 @@ Key generators
 
 .. module:: tammy
 
-.. automod:: keygen
+.. automodule:: keygen
    :members:
 

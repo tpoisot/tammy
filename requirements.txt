@@ -2,3 +2,4 @@ pyyaml
 json
 requests
 coveralls
+unicodedata

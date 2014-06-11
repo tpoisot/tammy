@@ -2,7 +2,7 @@ import datetime
 import os
 from os import listdir
 from os.path import expanduser
-from os.path import isfile, join
+from os.path import isfile, join, splitext
 import yaml
 import IO
 import cleanup
@@ -61,13 +61,13 @@ class library:
         """
         for k, v in self.records.iteritems():
             if not k == v.key():
-             self.records[v.key()] = self.records.pop(k)
-             ofile = join(self.config['bib_dir'], 'records', k+'.yaml')
-             nfile = join(self.config['bib_dir'], 'records', v.key()+'.yaml')
-             if isfile(ofile):
-                 os.rename(ofile, nfile)
+                self.records[v.key()] = self.records.pop(k)
+                ofile = join(self.config['bib_dir'], 'records', k+'.yaml')
+                nfile = join(self.config['bib_dir'], 'records', v.key()+'.yaml')
+                if isfile(ofile):
+                    os.rename(ofile, nfile)
             else :
-            self.records[v.keys()].write()
+                self.records[v.key()].write()
     def keys(self):
         return self.records.keys()
     def export(self, path=expanduser("~/.pandoc"), keys=None, output='citeproc-json'):
@@ -109,6 +109,17 @@ class record:
             a unicode string with the citation key
         """
         return self.content['id']
+    def attach(self, fpath, title=None):
+        if not isfile(fpath):
+            raise ValueError("The attachment must be a valid filepath")
+        fpath = expanduser(fpath)
+        fName, fExt = splitext(fpath)
+        if not 'files' in self.content:
+            self.content['files'] = dict()
+        if title == None :
+            title = str(len(self.content['files'])+1)
+        nfile = self.key()+'_'+title+fExt
+        os.rename(fpath, join(self.library.config['bib_dir'], 'files', nfile))
     def write(self):
         """ Writes the content of a record to disk
 

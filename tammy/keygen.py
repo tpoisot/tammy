@@ -1,6 +1,8 @@
 import string
+import unicodedata
 
 def makeunique(r, tentative_key):
+    tentative_key = unicodedata.normalize('NFKD', tentative_key).encode('ascii', 'ignore')
     if not tentative_key in r.library.keys():
         r.content['id'] = tentative_key
     else :
