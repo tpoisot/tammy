@@ -38,11 +38,11 @@ class library:
         records = [f for f in listdir(r_path) if isfile(join(r_path, f))]
         for f in records:
             with open(join(r_path, f), 'r') as r_file:
-                self.new(yaml.load(r_file))
+                self.new(yaml.load(r_file), False)
         for k, r in self.records.iteritems():
             if not r.changed:
                 r.changed = False
-    def write(self, force=True):
+    def write(self, force=False):
         for k, r in self.records.iteritems():
             if r.changed or force:
                 r.write()
@@ -88,11 +88,11 @@ class library:
         pass
 
 class record:
-    def __init__(self, library, content):
-        self.changed = None
+    def __init__(self, library, content, new = True):
+        self.changed = new
         self.content = cleanup.clean_all(content)
         self.library = library
-        if not 'id' in self.content:
+        if (not 'id' in self.content) or new:
             self.generate_key()
     def generate_key(self, keymaker=keygen.autYr):
         """ Generates a citation key from the record information
@@ -139,3 +139,4 @@ class record:
         path = self.library.config['bib_dir']+'records/'+self.key()+'.yaml'
         with open(path, 'w') as outfile:
             outfile.write(yaml.safe_dump(self.content))
+        self.changed = False
