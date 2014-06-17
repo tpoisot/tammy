@@ -46,10 +46,10 @@ class library:
         for k, r in self.records.iteritems():
             if r.changed or force:
                 r.write()
-    def new(self, content):
-        new_record = record(self, content)
+    def new(self, content, new = False):
+        new_record = record(self, content, new)
         self.records[new_record.key()] = new_record
-        self.write()
+        #self.write()
     def update(self):
         """ Update the keys in the library dict
 
@@ -104,7 +104,7 @@ class record:
         """
         self.changed = True
         keygen.makeunique(self, keymaker(self))
-        self.library.update()
+        #self.library.update()
     def key(self):
         """ Outputs the unique citation key for the record
 

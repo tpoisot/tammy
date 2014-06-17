@@ -19,7 +19,8 @@ def makeunique(r, tentative_key):
         Nothing, but changes the ``id`` key of the ``content`` of the record.
 
     """
-    tentative_key = unicodedata.normalize('NFKD', tentative_key).encode('ascii', 'ignore')
+    if type(tentative_key) == unicode :
+        tentative_key = unicodedata.normalize('NFKD', tentative_key).encode('ascii', 'ignore')
     if not tentative_key in r.library.keys():
         r.content['id'] = tentative_key
     else :
@@ -53,7 +54,12 @@ def Yr(r):
     return year[-2]+year[-1]
 
 def Author(r):
-    return r.content['author'][0]['family'].capitalize()
+    if 'author' in r.content:
+        if 'family' in r.content['author'][0]:
+            return r.content['author'][0]['family'].capitalize()
+        if 'literal' in r.content['author'][0]:
+            return r.content['author'][0]['literal'].replace(' ','')
+    return 'Anonymous'
 
 def Aut(r):
     return Author(r)[0:3]
