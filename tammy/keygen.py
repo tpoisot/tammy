@@ -30,7 +30,19 @@ def makeunique(r, tentative_key):
         r.content['id'] = tentative_key + alphabet[i]
 
 def Year(r):
-    return str(r.content['issued']['date-parts'][0][0])
+    """ Returns the year for a record
+
+    This will look first in "issued", then "accessed", then finally return
+    "XXXX" if no date object is found.
+
+    Returns:
+        A string with either the year (four digits) or XXXX if no date object is found
+
+    """
+    for type_of_date in ['issued', 'accessed']:
+        if type_of_date in r.content:
+            return str(r.content[type_of_date]['date-parts'][0])
+    return 'XXXX'
 
 def Yr(r):
     year = Year(r)
