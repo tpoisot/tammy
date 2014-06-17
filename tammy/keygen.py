@@ -41,7 +41,11 @@ def Year(r):
     """
     for type_of_date in ['issued', 'accessed']:
         if type_of_date in r.content:
-            return str(r.content[type_of_date]['date-parts'][0])
+            if type(r.content[type_of_date]['date-parts']) == list :
+                dpart = r.content[type_of_date]['date-parts'][0]
+            else :
+                dpart = r.content[type_of_date]['date-parts']
+            return str(dpart[0])
     return 'XXXX'
 
 def Yr(r):
