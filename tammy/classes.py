@@ -42,7 +42,7 @@ class library:
         for k, r in self.records.iteritems():
             if not r.changed:
                 r.changed = False
-    def write(self, force=False):
+    def write(self, force=True):
         for k, r in self.records.iteritems():
             if r.changed or force:
                 r.write()
