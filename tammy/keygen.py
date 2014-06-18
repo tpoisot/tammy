@@ -56,13 +56,16 @@ def Yr(r):
 def Author(r):
     if 'author' in r.content:
         if 'family' in r.content['author'][0]:
-            return r.content['author'][0]['family'].capitalize()
+            return r.content['author'][0]['family'].capitalize().replace(' ','')
         if 'literal' in r.content['author'][0]:
             return r.content['author'][0]['literal'].replace(' ','')
     return 'Anonymous'
 
 def Aut(r):
-    return Author(r)[0:3]
+    if len(Author(r)) < 3 :
+        return Author(r)
+    else :
+        return Author(r)[0:3]
 
 def AuthorYear(r):
     """ Author year format
