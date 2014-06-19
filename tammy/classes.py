@@ -10,11 +10,16 @@ from .cleanup import clean_all
 from .IO import serializer
 
 class library:
-    def __init__(self):
-        if isfile(expanduser("~/.tammy.yaml")):
-            ## read the config file
-            with open(expanduser("~/.tammy.yaml"), 'r') as cfile:
-                self.config = yaml.load(cfile)
+    def __init__(self, cfile=None):
+        ## Look for a file LOCALLY first, then in home SECOND
+        if not cfile:
+            if isfile(expanduser(".tammy.yaml")):
+                cfile = ".tammy.yaml"
+            elif isfile(expanduser("~/.tammy.yaml")):
+                cfile = "~/.tammy.yaml"
+        if cfile:
+            with open(expanduser(cfile), 'r') as configfile:
+                self.config = yaml.load(configfile)
         else :
             home = expanduser("~")
             self.config = dict()

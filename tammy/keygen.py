@@ -21,13 +21,14 @@ def makeunique(r, tentative_key):
     """
     tentative_key = unicodedata.normalize('NFKD', tentative_key).encode('ascii', 'ignore')
     if not tentative_key in r.library.keys():
-        r.content['id'] = tentative_key
+        r.content['id'] = tentative_key.decode()
     else :
         alphabet = list(string.ascii_lowercase)
         i = 0
         while(tentative_key+alphabet[i] in r.library.keys()):
             i = i + 1
-        r.content['id'] = tentative_key + alphabet[i]
+        tk = tentative_key + alphabet[i]
+        r.content['id'] = tk.decode()
 
 def Year(r):
     """ Returns the year for a record
