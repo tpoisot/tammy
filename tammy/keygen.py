@@ -19,8 +19,7 @@ def makeunique(r, tentative_key):
         Nothing, but changes the ``id`` key of the ``content`` of the record.
 
     """
-    if type(tentative_key) == unicode :
-        tentative_key = unicodedata.normalize('NFKD', tentative_key).encode('ascii', 'ignore')
+    tentative_key = unicodedata.normalize('NFKD', tentative_key).encode('ascii', 'ignore')
     if not tentative_key in r.library.keys():
         r.content['id'] = tentative_key
     else :

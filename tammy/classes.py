@@ -5,7 +5,7 @@ from os.path import expanduser
 from os.path import isfile, join, splitext
 import yaml
 
-from .keygen import autYr
+from .keygen import autYr, makeunique
 from .cleanup import clean_all
 from .IO import serializer
 
@@ -104,7 +104,7 @@ class record:
         record whose key is ``Doe2004`` will be written at ``Doe2004.yaml``.
         """
         self.changed = True
-        keygen.makeunique(self, keymaker(self))
+        makeunique(self, keymaker(self))
         #self.library.update()
     def key(self):
         """ Outputs the unique citation key for the record
