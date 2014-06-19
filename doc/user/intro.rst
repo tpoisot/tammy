@@ -6,9 +6,9 @@ Introduction
 Why tammy?
 ----------
 
-``tammy`` is a python (2.7) module that allows managing your bibliography
-in a simple way. I was dissatisfied by all the tools I used, so I decided
-to build my own. I was looking for a reference manager that...
+``tammy`` is a python 3 module that allows managing your bibliography in
+a simple way. I was dissatisfied by all the tools I used, so I decided to
+build my own. I was looking for a reference manager that...
 
 Can be used programmatically
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

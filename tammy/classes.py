@@ -4,9 +4,10 @@ from os import listdir
 from os.path import expanduser
 from os.path import isfile, join, splitext
 import yaml
-import IO
-import cleanup
-import keygen
+
+from .keygen import autYr
+from .cleanup import clean_all
+from .IO import serializer
 
 class library:
     def __init__(self):
@@ -39,11 +40,11 @@ class library:
         for f in records:
             with open(join(r_path, f), 'r') as r_file:
                 self.new(yaml.load(r_file), False)
-        for k, r in self.records.iteritems():
+        for k, r in self.records.items():
             if not r.changed:
                 r.changed = False
     def write(self, force=False):
-        for k, r in self.records.iteritems():
+        for k, r in self.records.items():
             if r.changed or force:
                 r.write()
     def new(self, content, new = False):
@@ -59,7 +60,7 @@ class library:
         folder, and make sure that the linked files are renamed too.
 
         """
-        for k, v in self.records.iteritems():
+        for k, v in self.records.items():
             if not k == v.key():
                 self.records[v.key()] = self.records.pop(k)
                 ofile = join(self.config['bib_dir'], 'records', k+'.yaml')
@@ -67,7 +68,7 @@ class library:
                 if isfile(ofile):
                     os.rename(ofile, nfile)
                 if 'files' in v.content:
-                    for fk, fv in v.content['files'].iteritems():
+                    for fk, fv in v.content['files'].items():
                         v.attach(fv, title=fk)
             else :
                 self.records[v.key()].write()
@@ -79,22 +80,22 @@ class library:
         else :
             keys = self.keys()
         records = []
-        for k ,v in self.records.iteritems():
+        for k ,v in self.records.items():
             if k in keys:
                 records.append(v.content)
-        if not output in IO.serializer.keys():
+        if not output in serializer.keys():
             raise KeyError("There is no "+output+" serializer at the moment. Write one?")
-        IO.serializer[output](records, path)
+        serializer[output](records, path)
         pass
 
 class record:
     def __init__(self, library, content, new = True):
         self.changed = new
-        self.content = cleanup.clean_all(content)
+        self.content = clean_all(content)
         self.library = library
         if (not 'id' in self.content) or new:
             self.generate_key()
-    def generate_key(self, keymaker=keygen.autYr):
+    def generate_key(self, keymaker=autYr):
         """ Generates a citation key from the record information
 
         At the moment, citations keys are created as FirstauthorYEAR plus

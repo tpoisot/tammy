@@ -1,4 +1,4 @@
-#! /usr/bin/env python2.7
+#! /usr/bin/env python3
 
 import sys, os
 import unittest
@@ -24,7 +24,7 @@ class PeerJ(unittest.TestCase):
 
 def main():
     if sys.version_info[1] < 7 :
-        unittest.main()
+        unittest.main(verbosity=2)
     else :
         unittest.main(verbosity=2)
 

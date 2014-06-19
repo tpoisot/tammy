@@ -10,10 +10,12 @@ from os.path import isfile
 # Validate ALL the things!!!
 # citeprocjs-schema-url = "https://raw.githubusercontent.com/citation-style-language/schema/master/csl-data.json"
 
-from classes import library, record
-from services import from_crossref_doi, from_peerj
-from IO import *
-from cleanup import *
-from keygen import *
+
+from .keygen import *
+
+from tammy.classes import library, record
+from tammy.services import from_crossref_doi, from_peerj
+import tammy.IO
+import tammy.cleanup
 
 __all__ = ['library', 'record', 'IO', 'keygen', 'services' ,'keygen']
