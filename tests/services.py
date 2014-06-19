@@ -14,6 +14,8 @@ class PeerJ(unittest.TestCase):
     def test_works_for_paper(self):
         test_paper = tammy.from_peerj(251, 'article')
         assert test_paper[u'author'][0][u'family'] == u'Poisot'
+    def test_no_id(self):
+        self.assertRaises(ValueError, tammy.from_peerj, 0, 'article')
     def test_works_for_preprint(self):
         test_paper = tammy.from_peerj(50, 'preprint')
         assert test_paper[u'author'][0][u'family'] == u'Poisot'
