@@ -40,14 +40,17 @@ Integrates in my ``pandoc``-based workflow
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 I use ``pandoc`` and ``markdown`` to write papers. ``pandoc`` can read
-bibliogrphy files in citeproc-JSON, so using ``bibtex`` as a storage format
-makes very little sense (see also, unicode).
+bibliography files in citeproc-JSON, so using ``bibtex`` as a storage format
+makes very little sense (see also: unicodes, and the fact that it's not the
+1980s anymore).
 
 Can do web search
 ~~~~~~~~~~~~~~~~~
 
 Getting the informations on a paper with just a ``DOI``, ``PMID``, ``ArXiV``
-identifier, etc, is useful, so I am building a set of functions to do that.
+identifier, etc, is useful, so I am building a set of functions to do
+that. Also, if journals expose their papers in citeproc-JSON (as *PeerJ*
+does), it's easy to write a function for integration.
 
 
 With all these informations in hand, if you think ``tammy`` is right for you,

@@ -31,6 +31,7 @@ User guide
 
    user/intro
    user/first
+   user/adding
 
 API guide
 ---------
