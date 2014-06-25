@@ -11,8 +11,18 @@ from .IO import serializer
 
 class library:
     def __init__(self, cfile=None):
-        ## Look for a file LOCALLY first, then in home SECOND
+        """
+        Creates a library
+
+        If a configuration file path is given, this will take precedence over
+        the other two default locations, *i.e.* looking for ``.tammy.yaml``
+        in the local directory (first), then in the user home (second).
+
+        Args:
+            cfile: a strong giving the path to a configuration file
+        """
         if not cfile:
+        ## Look for a file LOCALLY first, then in home SECOND
             if isfile(expanduser(".tammy.yaml")):
                 cfile = ".tammy.yaml"
             elif isfile(expanduser("~/.tammy.yaml")):
@@ -28,6 +38,7 @@ class library:
         self.created = datetime.datetime.now()
         self.records = dict()
         self.read(force=True)
+        self.update()
     def read(self, force=False):
         """Read the yaml files from the references folder
 
@@ -55,7 +66,6 @@ class library:
     def new(self, content, new = False):
         new_record = record(self, content, new)
         self.records[new_record.key()] = new_record
-        #self.write()
     def update(self):
         """ Update the keys in the library dict
 
@@ -103,14 +113,18 @@ class record:
     def generate_key(self, keymaker=autYr):
         """ Generates a citation key from the record information
 
-        At the moment, citations keys are created as FirstauthorYEAR plus
-        one letter if this is required to make the citation key unique. Note
-        that the citation key is also the filename of the record, so that a
-        record whose key is ``Doe2004`` will be written at ``Doe2004.yaml``.
+        At the moment, citations keys are created as autyr scheme plus one
+        letter if this is required to make the citation key unique. Note
+        that the citation key is also the filename of the record, so that
+        a record whose key is ``Doe2004`` will be written at ``Doe2004.yaml``.
+
+        Args:
+            keymaker: a function returning a string with the record id,
+            based on the contents of the record.
+
         """
         self.changed = True
         makeunique(self, keymaker(self))
-        #self.library.update()
     def key(self):
         """ Outputs the unique citation key for the record
 
