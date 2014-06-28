@@ -89,7 +89,8 @@ class library:
                 self.records[v.key()].write()
     def keys(self):
         return self.records.keys()
-    def export(self, path=expanduser("~/.pandoc"), keys=None, output='citeproc-json'):
+    def export(self, path="~/.pandoc", keys=None, output='citeproc-json'):
+        path = expanduser(path)
         if not keys == None :
             keys = [k for k in self.keys() if k in keys]
         else :

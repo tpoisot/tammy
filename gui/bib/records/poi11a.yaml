@@ -1,0 +1,31 @@
+DOI: 10.1111/j.1461-0248.2011.01645.x
+ISSN: 1461-0248
+URL: http://www.ncbi.nlm.nih.gov/pubmed/21699641
+abstract: Ecological specialisation concerns all species and underlies many major
+  ecological and evolutionary patterns. Yet its status as a unifying concept is not
+  always appreciated because of its similarity to concepts of the niche, the many
+  levels of biological phenomena to which it applies, and the complexity of the mechanisms
+  influencing it. The evolution of specialisation requires the coupling of constraints
+  on adaptive evolution with covariation of genotype and environmental performance.
+  This covariation itself depends upon organismal properties such as dispersal behaviour
+  and life history and complexity in the environment stemming from factors such as
+  species interactions and spatio-temporal heterogeneity in resources. Here, we develop
+  a view on specialisation that integrates across the range of biological phenomena
+  with the goal of developing a more predictive conceptual framework that specifically
+  accounts for the importance of biotic complexity and coevolutionary events.
+author:
+- {family: Poisot, given: "Timoth\xE9e"}
+- {family: Bever, given: James D}
+- {family: Nemri, given: Adnane}
+- {family: Thrall, given: Peter H}
+- {family: Hochberg, given: Michael E}
+container-title: Ecology Letters
+id: poi11a
+issue: '9'
+issued:
+  date-parts:
+  - [2011, 6]
+page: 841-851
+title: A conceptual framework for the evolution of ecological specialisation.
+type: article-journal
+volume: '14'

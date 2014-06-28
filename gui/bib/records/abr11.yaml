@@ -1,0 +1,38 @@
+DOI: 10.1371/journal.pone.0021028
+ISSN: 1932-6203
+URL: http://www.ncbi.nlm.nih.gov/pubmed/21698298
+abstract: 'Plant-pollinator mutualistic networks are asymmetric in their interactions:
+  specialist plants are pollinated by generalist animals, while generalist plants
+  are pollinated by a broad range involving specialists and generalists. It has been
+  suggested that this asymmetric -or disassortative- assemblage could play an important
+  role in determining the observed equal susceptibility of specialist and generalist
+  plants under habitat destruction. At the core of the analysis of the phenomenon
+  lies the observation that specialist plants, otherwise candidates to extinction,
+  could cope with the disruption thanks to their interaction with a few generalist
+  pollinators. We present a theoretical framework that supports this thesis. We analyze
+  a dynamical model of a system of mutualistic plants and pollinators, subject to
+  the destruction of their habitat. We analyze and compare two families of interaction
+  topologies, ranging from highly assortative to highly disassortative ones, as well
+  as real pollination networks. We found that several features observed in natural
+  systems are predicted by the mathematical model. First, there is a tendency to increase
+  the asymmetry of the network as a result of the extinctions. Second, an entropy
+  measure of the differential susceptibility to extinction of specialist and generalist
+  species show that they tend to balance when the network is disassortative. Finally,
+  the disappearance of links in the network, as a result of extinctions, shows that
+  specialist plants preserve more connections than the corresponding plants in an
+  assortative system, enabling them to resist the disruption.'
+author:
+- {family: Abramson, given: Guillermo}
+- {family: Trejo Soto, given: Claudia a}
+- {family: "O\xF1a", given: Leonardo}
+container-title: PLoS One
+id: abr11
+issue: '6'
+issued:
+  date-parts:
+  - [2011, 1]
+page: e21028
+title: The role of asymmetric interactions on the effect of habitat destruction in
+  mutualistic networks.
+type: article-journal
+volume: '6'

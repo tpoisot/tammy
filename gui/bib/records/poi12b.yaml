@@ -1,0 +1,35 @@
+DOI: 10.1111/ele.12002
+ISSN: 1461-0248
+URL: http://onlinelibrary.wiley.com/doi/10.1111/ele.12002/abstract http://www.ncbi.nlm.nih.gov/pubmed/22994257
+abstract: "In a context of global changes, and amidst the perpetual modification of\
+  \ community structure undergone by most natural ecosystems, it is more important\
+  \ than ever to understand how species interactions vary through space and time.\
+  \ The integration of biogeography and network theory will yield important results\
+  \ and further our understanding of species interactions. It has, however, been hampered\
+  \ so far by the difficulty to quantify variation among interaction networks. Here,\
+  \ we propose a general framework to study the dissimilarity of species interaction\
+  \ networks over time, space or environments, allowing both the use of quantitative\
+  \ and qualitative data. We decompose network dissimilarity into interactions and\
+  \ species turnover components, so that it is immediately comparable to common measures\
+  \ of \u03B2-diversity. We emphasise that scaling up \u03B2-diversity of community\
+  \ composition to the \u03B2-diversity of interactions requires only a small methodological\
+  \ step, which we foresee will help empiricists adopt this method. We illustrate\
+  \ the framework with a large dataset of hosts and parasites interactions and highlight\
+  \ other possible usages. We discuss a research agenda towards a biogeographical\
+  \ theory of species interactions."
+author:
+- {family: Poisot, given: "Timoth\xE9e"}
+- {family: Canard, given: Elsa}
+- {family: Mouillot, given: David}
+- {family: Mouquet, given: Nicolas}
+- {family: Gravel, given: Dominique}
+container-title: Ecology Letters
+id: poi12b
+issue: '12'
+issued:
+  date-parts:
+  - [2012, 9]
+page: 1353-1361
+title: The dissimilarity of species interaction networks.
+type: article-journal
+volume: '15'

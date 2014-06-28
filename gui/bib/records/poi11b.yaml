@@ -1,0 +1,27 @@
+DOI: 10.1098/rsbl.2010.0774
+ISSN: 1744-{957X}
+URL: http://www.ncbi.nlm.nih.gov/pubmed/20961886
+abstract: Antagonistic networks are known to be structured in the wild, but knowledge
+  on how this structure may change as a response to environmental perturbations is
+  scarce. We describe a natural bipartite network between bacteria and lytic bacteriophages,
+  and investigate how it is affected by environmental productivity in the form of
+  different resource levels for the bacteria. We report that low amounts of resource
+  decrease phage generality and lead to less robust and less stable communities. We
+  discuss how resource levels in nature may alter the structure of complex communities.
+author:
+- {family: Poisot, given: "Timoth\xE9e"}
+- {family: Lepennetier, given: Gildas}
+- {family: Martinez, given: Esteban}
+- {family: Ramsayer, given: Johan}
+- {family: Hochberg, given: Michael E}
+container-title: Biology Letters
+id: poi11b
+issue: '2'
+issued:
+  date-parts:
+  - [2011, 10]
+page: 201-204
+title: Resource availability affects the structure of a natural bacteria-bacteriophage
+  community.
+type: article-journal
+volume: '7'

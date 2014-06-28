@@ -1,0 +1,29 @@
+DOI: 10.3410/f1000research.1-20.v1
+abstract: "Despite knowledge about microbial responses to abiotic stress, few studies\
+  \ have investigated stress responses to antagonistic species, such as competitors,\
+  \ predators and pathogens. While it is often assumed that interacting populations\
+  \ of bacteria and phage will coevolve resistance and exploitation strategies, an\
+  \ alternative is that individual bacteria tolerate or evade phage predation through\
+  \ inducible responses to phage presence. Using the microbial model Pseudomonas fluorescens\
+  \ SBW25 and its lytic DNA phage SBW25\u03A62, we demonstrate the existence of an\
+  \ inducible response in the form of a transient increase in population growth rate,\
+  \ and found that the response was induced by phage binding. This response was accompanied\
+  \ by a decrease in bacterial cell size, which we propose to be an associated cost.\
+  \ We discuss these results in the context of bacterial ecology and phage-bacteria\
+  \ co-evolution."
+author:
+- {family: Poisot, given: "Timoth\xE9e"}
+- {family: Bell, given: Thomas}
+- {family: Martinez, given: Esteban}
+- {family: Gougat-barbera, given: Claire}
+- {family: Hochberg, given: Michael E}
+container-title: F1000 Research
+id: poi12a
+issue: '20'
+issued:
+  date-parts:
+  - [2012]
+page: 1-6
+title: Terminal investment induced by a bacteriophage in a rhizosphere bacterium
+type: article-journal
+volume: '1'
