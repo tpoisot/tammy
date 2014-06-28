@@ -1,0 +1,16 @@
+author:
+- {family: Canchaya, given: Carlos}
+- {family: Fournous, given: Ghislain}
+- {family: Chibani-Chennoufi, given: Sandra}
+- {family: Dillmann, given: Marie-Lise}
+- {family: "Br\xFCssow", given: Harald}
+container-title: Current Opinion in Microbiology
+id: can03
+issue: '4'
+issued:
+  date-parts:
+  - [2003]
+page: 417-424
+title: Phage as agents of lateral gene transfer
+type: article-journal
+volume: '6'

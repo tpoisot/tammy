@@ -10,15 +10,36 @@ import tammy
 
 import npyscreen
 
+def type_to_str(t):
+    types = {
+                'article-journal': 'Paper',
+                'book': 'Book',
+                'thesis': 'Thesis',
+                'chapter': 'Chapter',
+                'report': 'Report',
+                'no-type': 'Unknown',
+                'paper-conference': 'Proceedings'
+            }
+    return types[t] if t in types else t
+
 class TammyList(npyscreen.NPSApp):
+    def __init__(self):
+        self.lib = tammy.library()
     def main(self):
-        lib = tammy.library()
         F = npyscreen.Form(name="List of references")
-        l = F.add(npyscreen.GridColTitles, columns=3)
-        l.col_titles = ['Key', 'Year', 'Title']
+        ref_list = F.add(npyscreen.GridColTitles, columns=6)
+        ref_list.col_titles = ['Key', 'Title', 'Author', 'Year', 'In', 'Type']
         ## Build a two-dimensional array
-        RefList = [[key, tammy.Year(rec), rec.content['title']] for key, rec in lib.records.items()]
-        l.values = RefList
+        RefList = [
+                    [key,
+                    rec.content['title'],
+                    tammy.Author(rec),
+                    tammy.Year(rec),
+                    rec.content['container-title'] if 'container-title' in rec.content else '  ',
+                    type_to_str(rec.content['type'])
+                    ] for key, rec in self.lib.records.items()
+                ]
+        ref_list.values = RefList
         ##
         F.edit()
 

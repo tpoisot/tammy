@@ -1,0 +1,10 @@
+URL: http://www.r-project.org
+author:
+- {literal: R Development Core Team}
+id: rde08
+issued:
+  date-parts:
+  - [2008]
+publisher-place: Vienna, Austria
+title: 'R: A Language and Environment for Statistical Computing'
+type: book
