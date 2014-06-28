@@ -27,7 +27,7 @@ class TammyList(npyscreen.NPSApp):
         self.lib = tammy.library()
     def main(self):
         F = npyscreen.Form(name="List of references")
-        ref_list = F.add(npyscreen.GridColTitles, columns=6)
+        ref_list = F.add(npyscreen.GridColTitles, columns=6, max_height=50)
         ref_list.col_titles = ['Key', 'Title', 'Author', 'Year', 'In', 'Type']
         ## Build a two-dimensional array
         RefList = [
@@ -40,7 +40,9 @@ class TammyList(npyscreen.NPSApp):
                     ] for key, rec in self.lib.records.items()
                 ]
         ref_list.values = RefList
-        ##
+        ## Series of filters
+        filter_title = F.add(npyscreen.TitleText, name='Titles: ')
+        ## Make the form active
         F.edit()
 
 if __name__ == "__main__":
