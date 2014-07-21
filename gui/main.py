@@ -27,7 +27,7 @@ class TammyList(npyscreen.NPSApp):
         self.lib = tammy.library()
     def main(self):
         F = npyscreen.Form(name="List of references")
-        ref_list = F.add(npyscreen.GridColTitles, columns=6, max_height=50)
+        ref_list = F.add(npyscreen.GridColTitles, columns=6, max_height=25)
         ref_list.col_titles = ['Key', 'Title', 'Author', 'Year', 'In', 'Type']
         ## Build a two-dimensional array
         RefList = [

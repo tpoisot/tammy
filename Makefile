@@ -5,7 +5,8 @@ test: tests/*py
 	mkdir -p tests/bib/files
 	# tests go here
 	./tests/services.py
+	./tests/keygen.py
 	# cleanup
-	rm bib/records/*
-	rm bib/files/*
+#	rm tests/bib/records/*
+#	rm tests/bib/files/*
 
