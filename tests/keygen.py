@@ -6,12 +6,13 @@ import yaml
 import json
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+config_file = os.path.join(os.path.dirname(__file__), 'tammy.yaml')
 import tammy
 
 class Author(unittest.TestCase):
     @classmethod
     def setUp(self):
-        self.lib = tammy.library(cfile='tests/.tammy.yaml')
+        self.lib = tammy.library(cfile=config_file)
         # Short author name
         self.lib.new(tammy.from_crossref_doi('10.1016/0378-1119(89)90358-2'))
         # Author name with space
@@ -21,7 +22,7 @@ class Author(unittest.TestCase):
     def test_author_shortname(self):
         assert tammy.Author(self.lib.records['ho89']) == 'Ho'
     def test_author_consortium(self):
-        assert tammy.Author(self.lib.records['wor06']) == 'Wor'
+        assert tammy.Aut(self.lib.records['cen12']) == 'Cen'
     def test_author_space(self):
         assert tammy.Author(self.lib.records['dev07']) == 'Devienne'
         assert tammy.Aut(self.lib.records['dev07']) == 'Dev'
@@ -29,14 +30,11 @@ class Author(unittest.TestCase):
 class SameNames(unittest.TestCase):
     @classmethod
     def setUp(self):
-        self.lib = tammy.library(cfile='tests/.tammy.yaml')
-    def test_make_ref1(self):
+        self.lib = tammy.library(cfile=config_file)
+    def test_same_names_years(self):
         self.lib.new(tammy.from_crossref_doi('10.1111/j.1461-0248.2010.01493.x'))
-        assert 'dev10' in self.lib.keys()
-    def test_make_ref2(self):
         self.lib.new(tammy.from_crossref_doi('10.1111/j.1365-2664.2009.01744.x'))
-        print(self.lib.keys())
-        assert 'dev10a' in self.lib.keys()
+        assert 'dev10a' in self.lib.keys() and 'dev10' in self.lib.keys()
 
 def main():
     if sys.version_info[1] < 7 :
