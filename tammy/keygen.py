@@ -3,6 +3,11 @@
 import string
 import unicodedata
 
+def clean_str(s):
+    """ Clean a string
+    """
+    return unicodedata.normalize('NFKD', s).encode('ascii', 'ignore')
+
 def makeunique(r, tentative_key):
     """ Make a citation key unique
 
@@ -19,7 +24,6 @@ def makeunique(r, tentative_key):
         Nothing, but changes the ``id`` key of the ``content`` of the record.
 
     """
-    tentative_key = unicodedata.normalize('NFKD', tentative_key).encode('ascii', 'ignore')
     if not tentative_key in r.library.keys():
         r.content['id'] = tentative_key.decode()
     else :
@@ -43,8 +47,8 @@ def Year(r):
     for type_of_date in ['issued', 'accessed']:
         if type_of_date in r.content:
             dpart = r.content[type_of_date]['date-parts'][0][0]
-            return str(dpart)
-    return 'XXXX'
+            return clean_str(str(dpart))
+    return clean_str('XXXX')
 
 def Yr(r):
     year = Year(r)
@@ -54,8 +58,10 @@ def Author(r):
     if 'author' in r.content:
         for author_type in ['family', 'literal']:
             if author_type in r.content['author'][0]:
-                return r.content['author'][0][author_type].capitalize().replace(' ','')
-    return 'Anonymous'
+                return clean_str(r.content['author'][0][author_type].capitalize().replace(' ',''))
+    elif 'publisher' in r.content:
+            return clean_str(r.content['publisher'].capitalize().replace(' ',''))
+    return clean_str('Anonymous')
 
 def Aut(r):
     if len(Author(r)) < 3 :
