@@ -6,7 +6,7 @@ import unicodedata
 def clean_str(s):
     """ Clean a string
     """
-    return unicodedata.normalize('NFKD', s).encode('ascii', 'ignore')
+    return unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode()
 
 def makeunique(r, tentative_key):
     """ Make a citation key unique
@@ -25,14 +25,14 @@ def makeunique(r, tentative_key):
 
     """
     if not tentative_key in r.library.keys():
-        r.content['id'] = tentative_key.decode()
+        r.content['id'] = tentative_key
     else :
         alphabet = list(string.ascii_lowercase)
         i = 0
         while(tentative_key+alphabet[i] in r.library.keys()):
             i = i + 1
         tk = tentative_key + alphabet[i]
-        r.content['id'] = tk.decode()
+        r.content['id'] = tk
 
 def Year(r):
     """ Returns the year for a record
