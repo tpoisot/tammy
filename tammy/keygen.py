@@ -52,10 +52,9 @@ def Yr(r):
 
 def Author(r):
     if 'author' in r.content:
-        if 'family' in r.content['author'][0]:
-            return r.content['author'][0]['family'].capitalize().replace(' ','')
-        if 'literal' in r.content['author'][0]:
-            return r.content['author'][0]['literal'].replace(' ','')
+        for author_type in ['family', 'literal']:
+            if author_type in r.content['author'][0]:
+                return r.content['author'][0][author_type].capitalize().replace(' ','')
     return 'Anonymous'
 
 def Aut(r):
