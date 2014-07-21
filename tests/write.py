@@ -9,6 +9,7 @@ import json
 orig_path = os.path.join(os.path.dirname(__file__), '..')
 sys.path.append(orig_path)
 config_file = os.path.join(os.path.dirname(__file__), 'tammy.yaml')
+
 import tammy
 
 class SameNames(unittest.TestCase):
@@ -19,11 +20,12 @@ class SameNames(unittest.TestCase):
         self.lib.new(tammy.from_crossref_doi('10.1111/j.1461-0248.2010.01493.x'))
         # expected key dev10
         self.lib.write()
-        assert os.path.isfile(os.path.join(orig_path, self.lib.config['bib_dir'], 'dev10.yaml'))
+        assert os.path.isfile('./tests/bib/records/dev10.yaml')
     def test_name_2(self):
         self.lib.new(tammy.from_crossref_doi('10.1111/j.1365-2664.2009.01744.x'))
+        # expected key dev10a
         self.lib.update()
-        assert True
+        assert os.path.isfile('./tests/bib/records/dev10.yaml')
 
 def main():
     if sys.version_info[1] < 7 :

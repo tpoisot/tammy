@@ -6,7 +6,8 @@ test: tests/*py
 	# tests go here
 	./tests/services.py
 	./tests/keygen.py
+	./tests/write.py
 	# cleanup
-#	rm tests/bib/records/*
+	rm tests/bib/records/*
 #	rm tests/bib/files/*
 
