@@ -34,15 +34,17 @@ class Authoryear(unittest.TestCase):
     def test_AuthorYear(self):
         assert tammy.AuthorYear(self.lib.records['poi13']) == 'Poisot13'
     def test_AutYear(self):
-        assert tammy.AuthorYear(self.lib.records['poi13']) == 'Poi2013'
+        assert tammy.AutYear(self.lib.records['poi13']) == 'Poi2013'
     def test_AutYr(self):
-        assert tammy.AuthorYear(self.lib.records['poi13']) == 'Poi13'
+        assert tammy.AutYr(self.lib.records['poi13']) == 'Poi13'
     def test_autYr(self):
-        assert tammy.AuthorYear(self.lib.records['poi13']) == 'poi13'
+        assert tammy.autYr(self.lib.records['poi13']) == 'poi13'
+    def test_autYear(self):
+        assert tammy.autYear(self.lib.records['poi13']) == 'poi2013'
     def test_AUTYr(self):
-        assert tammy.AuthorYear(self.lib.records['poi13']) == 'POI13'
+        assert tammy.AUTYr(self.lib.records['poi13']) == 'POI13'
     def test_AUTYear(self):
-        assert tammy.AuthorYear(self.lib.records['poi13']) == 'POI2013'
+        assert tammy.AUTYear(self.lib.records['poi13']) == 'POI2013'
 
 
 class SameNames(unittest.TestCase):
