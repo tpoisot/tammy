@@ -12,3 +12,7 @@ clean:
 test: run_tests.py
 	python run_tests.py
 
+coverage: run_tests.py
+	coverage run --source=tammy run_tests.py
+	coverage report -m
+
