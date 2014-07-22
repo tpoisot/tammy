@@ -30,6 +30,12 @@ class a_import(unittest.TestCase):
         os.remove('tests/bib/records/dev10.yaml')
         os.remove('tests/bib/records/dev10a.yaml')
         os.remove('tests/bib/default.json')
+    def test_3_read_unsupported(self):
+        with self.assertRaises(ValueError):
+            tammy.IO.get_from_file("tests/REF/readfrom/dev10a.yaml", "RIS")
+    def test_4_no_file(self):
+        with self.assertRaises(ValueError):
+            tammy.IO.get_from_file("tests/REF/readfrom/nofile.yaml", "citeproc-yaml")
 
 
 class b_export(unittest.TestCase):
@@ -43,7 +49,6 @@ class b_export(unittest.TestCase):
     def test_write_yaml(self):
         self.lib.export(path='tests/bib/', keys=None, output='citeproc-yaml')
         assert os.path.isfile('tests/bib/default.yaml')
-        os.remove('tests/bib/default.yaml')
     def test_wrong_serializer(self):
         with self.assertRaises(KeyError):
             self.lib.export(path='.', keys=None, output='bibtex')
