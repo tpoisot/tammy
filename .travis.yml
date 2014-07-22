@@ -3,7 +3,9 @@ python:
    - "3.4"
 install: "pip install -r requirements.txt"
 script:
-   - coverage run --source=tammy tests/services.py
+   - make test_folders
+   - coverage run --source=tammy run_tests.py
    - coverage report -m
+   - make clean
 after_success:
    coveralls --verbose
