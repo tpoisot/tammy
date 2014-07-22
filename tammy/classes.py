@@ -19,7 +19,7 @@ class library:
         in the local directory (first), then in the user home (second).
 
         Args:
-            cfile: a strong giving the path to a configuration file
+            cfile: a string giving the path to a configuration file
         """
         if not cfile:
         ## Look for a file LOCALLY first, then in home SECOND

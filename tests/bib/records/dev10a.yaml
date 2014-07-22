@@ -1,0 +1,39 @@
+DOI: 10.1111/j.1365-2664.2009.01744.x
+ISSN: 0021-8901,1365-2664
+URL: http://dx.doi.org/10.1111/j.1365-2664.2009.01744.x
+author:
+- {family: Devictor, given: Vincent}
+- {family: Clavel, given: Joanne}
+- {family: Julliard, given: Romain}
+- {family: Lavergne, given: "S\xE9bastien"}
+- {family: Mouillot, given: David}
+- {family: Thuiller, given: Wilfried}
+- {family: Venail, given: Patrick}
+- {family: "Vill\xE9ger", given: "S\xE9bastien"}
+- {family: Mouquet, given: Nicolas}
+container-title: Journal of Applied Ecology
+deposited:
+  date-parts:
+  - [2011, 8, 17]
+  timestamp: 1313539200000
+id: dev10a
+indexed:
+  date-parts:
+  - [2014, 5, 12]
+  timestamp: 1399891298997
+issue: '1'
+issued:
+  date-parts:
+  - [2010, 2]
+member: http://id.crossref.org/member/311
+page: 15-25
+prefix: http://id.crossref.org/prefix/10.1111
+publisher: Wiley-Blackwell
+reference-count: 63
+score: 1.0
+source: CrossRef
+subject: [Ecology]
+subtitle: []
+title: Defining and measuring ecological specialization
+type: article-journal
+volume: '47'

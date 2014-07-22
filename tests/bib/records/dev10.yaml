@@ -1,0 +1,35 @@
+DOI: 10.1111/j.1461-0248.2010.01493.x
+ISSN: 1461-023X,1461-0248
+URL: http://dx.doi.org/10.1111/j.1461-0248.2010.01493.x
+author:
+- {family: Devictor, given: Vincent}
+- {family: Mouillot, given: David}
+- {family: Meynard, given: Christine}
+- {family: Jiguet, given: "Fr\xE9d\xE9ric"}
+- {family: Thuiller, given: Wilfried}
+- {family: Mouquet, given: Nicolas}
+container-title: Ecology Letters
+deposited:
+  date-parts:
+  - [2010, 6, 10]
+  timestamp: 1276128000000
+id: dev10
+indexed:
+  date-parts:
+  - [2014, 5, 9]
+  timestamp: 1399626133558
+issued:
+  date-parts:
+  - [2010, 6, 10]
+member: http://id.crossref.org/member/311
+page: no-no
+prefix: http://id.crossref.org/prefix/10.1111
+publisher: Wiley-Blackwell
+reference-count: 52
+score: 1.0
+source: CrossRef
+subject: ['Ecology, Evolution, Behavior and Systematics']
+subtitle: [Spatial mismatch between diversity facets]
+title: 'Spatial mismatch and congruence between taxonomic, phylogenetic and functional
+  diversity: the need for integrative conservation strategies in a changing world'
+type: article-journal

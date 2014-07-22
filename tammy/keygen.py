@@ -6,10 +6,7 @@ import unicodedata
 def clean_str(s):
     """ Clean a string
     """
-    if isinstance(s, str):
-        return s
-    else:
-        return unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode()
+    return unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode()
 
 def makeunique(r, tentative_key):
     """ Make a citation key unique
