@@ -27,6 +27,17 @@ class SameNames(unittest.TestCase):
         self.lib.update()
         assert os.path.isfile('./tests/bib/records/dev10.yaml')
 
+class Export(unittest.TestCase):
+    @classmethod
+    def setUp(self):
+        self.lib = tammy.library(cfile=config_file)
+    def test_write_json(self):
+        self.lib.export(path='.', keys=None, output='citeproc-json')
+        assert os.path.isfile('default.json')
+    def test_write_yaml(self):
+        self.lib.export(path='.', keys=None, output='citeproc-json')
+        assert os.path.isfile('default.json')
+
 def main():
     if sys.version_info[1] < 7 :
         unittest.main()
