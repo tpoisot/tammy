@@ -12,20 +12,25 @@ config_file = os.path.join(os.path.dirname(__file__), 'tammy.yaml')
 
 import tammy
 
-class a_same_names(unittest.TestCase):
+class a_import(unittest.TestCase):
     @classmethod
     def setUp(self):
         self.lib = tammy.library(cfile=config_file)
-    def test_name_1(self):
-        self.lib.new(tammy.from_crossref_doi('10.1111/j.1461-0248.2010.01493.x'))
-        # expected key dev10
-        self.lib.write()
-        assert os.path.isfile('./tests/bib/records/dev10.yaml')
-    def test_name_2(self):
-        self.lib.new(tammy.from_crossref_doi('10.1111/j.1365-2664.2009.01744.x'))
-        # expected key dev10a
+        self.lib.new(tammy.IO.get_from_file("tests/REF/readfrom/dev10.yaml", "citeproc-yaml"))
+        self.lib.new(tammy.IO.get_from_file("tests/REF/readfrom/dev10a.yaml", "citeproc-yaml"))
+    def test_1_unique_ids(self):
+        assert "dev10" in self.lib.keys()
+        assert "dev10a" in self.lib.keys()
+    def test_2_write_files(self):
         self.lib.update()
-        assert os.path.isfile('./tests/bib/records/dev10.yaml')
+        assert os.path.isfile('tests/bib/records/dev10.yaml')
+        assert os.path.isfile('tests/bib/records/dev10a.yaml')
+        self.lib.export(path='tests/bib', output='citeproc-json')
+        assert os.path.isfile('tests/bib/default.json')
+        os.remove('tests/bib/records/dev10.yaml')
+        os.remove('tests/bib/records/dev10a.yaml')
+        os.remove('tests/bib/default.json')
+
 
 class b_export(unittest.TestCase):
     @classmethod
@@ -34,16 +39,20 @@ class b_export(unittest.TestCase):
     def test_write_json(self):
         self.lib.export(path='tests/bib/', keys=None, output='citeproc-json')
         assert os.path.isfile('tests/bib/default.json')
+        os.remove('tests/bib/default.json')
     def test_write_yaml(self):
         self.lib.export(path='tests/bib/', keys=None, output='citeproc-yaml')
         assert os.path.isfile('tests/bib/default.yaml')
+        os.remove('tests/bib/default.yaml')
     def test_wrong_serializer(self):
         with self.assertRaises(KeyError):
             self.lib.export(path='.', keys=None, output='bibtex')
     def test_only_some_keys(self):
-        self.lib.export(path='.', keys=["dev10"], output="citeproc-yaml")
+        self.lib.export(path='tests/bib/', keys=["poi12"], output="citeproc-yaml")
         record = tammy.IO.get_from_file("default.yaml", "citeproc-yaml")
-        assert len(record) == 1 and record['id'] == "dev10"
+        assert len(record) == 1
+        assert record[0]['id'] == "poi12"
+        os.remove('tests/bib/default.yaml')
 
 def main():
     if sys.version_info[1] < 7 :
