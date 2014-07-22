@@ -22,6 +22,13 @@ class PeerJ(unittest.TestCase):
         test_paper = tammy.from_peerj(50, 'preprint')
         assert test_paper[u'author'][0][u'family'] == u'Poisot'
 
+class CrossRef(unittest.TestCase):
+    def test_correct_doi(self):
+        assert isinstance(tammy.from_crossref_doi('10.7717/peerj.426'), dict)
+    def test_no_doi(self):
+        with self.assertRaises(ValueError):
+            tammy.from_crossref_doi('no/no/no')
+
 def main():
     if sys.version_info[1] < 7 :
         unittest.main(verbosity=2)

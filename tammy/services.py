@@ -22,7 +22,7 @@ def from_crossref_doi(doi, base_url='http://dx.doi.org/'):
     if request_output.status_code == 200 :
         return request_output.json()
     else :
-        raise ValueError("No such DOI found")
+        raise ValueError("No such DOI found -- Error code "+str(request_output.status_code))
 
 def from_peerj(pubid, pubtype='article'):
     """ Get a JSON record from a PeerJ article or preprint
