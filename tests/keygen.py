@@ -13,19 +13,37 @@ class Author(unittest.TestCase):
     @classmethod
     def setUp(self):
         self.lib = tammy.library(cfile=config_file)
-        # Short author name
-        self.lib.new(tammy.from_crossref_doi('10.1016/0378-1119(89)90358-2'))
-        # Author name with space
-        self.lib.new(tammy.from_crossref_doi('10.1093/bioinformatics/btm500'))
-        # Consortium
-        self.lib.new(tammy.from_crossref_doi('10.3201/eid1201.051371'))
     def test_author_shortname(self):
+        self.lib.new(tammy.from_crossref_doi('10.1016/0378-1119(89)90358-2'))
         assert tammy.Author(self.lib.records['ho89']) == 'Ho'
     def test_author_consortium(self):
+        self.lib.new(tammy.from_crossref_doi('10.3201/eid1201.051371'))
         assert tammy.Aut(self.lib.records['cen12']) == 'Cen'
     def test_author_space(self):
+        self.lib.new(tammy.from_crossref_doi('10.1093/bioinformatics/btm500'))
         assert tammy.Author(self.lib.records['dev07']) == 'Devienne'
         assert tammy.Aut(self.lib.records['dev07']) == 'Dev'
+
+class Authoryear(unittest.TestCase):
+    @classmethod
+    def setUp(self):
+        self.lib = tammy.library(cfile=config_file)
+        self.lib.new(tammy.from_crossref_doi('10.1186/2192-1709-2-13'))
+    def AuthorYr(self):
+        assert tammy.AuthorYr(self.lib.records['poi13']) == 'Poisot13'
+    def AuthorYear(self):
+        assert tammy.AuthorYear(self.lib.records['poi13']) == 'Poisot13'
+    def AutYear(self):
+        assert tammy.AuthorYear(self.lib.records['poi13']) == 'Poi2013'
+    def AutYr(self):
+        assert tammy.AuthorYear(self.lib.records['poi13']) == 'Poi13'
+    def autYr(self):
+        assert tammy.AuthorYear(self.lib.records['poi13']) == 'poi13'
+    def AUTYr(self):
+        assert tammy.AuthorYear(self.lib.records['poi13']) == 'POI13'
+    def AUTYear(self):
+        assert tammy.AuthorYear(self.lib.records['poi13']) == 'POI2013'
+
 
 class SameNames(unittest.TestCase):
     @classmethod
