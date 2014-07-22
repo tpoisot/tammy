@@ -84,7 +84,7 @@ class library:
                     os.rename(ofile, nfile)
                 if 'files' in v.content:
                     for fk, fv in v.content['files'].items():
-                        v.attach(fv, title=fk)
+                        v.attach(join(self.config['bib_dir'], 'files', fv), title=fk)
             else :
                 self.records[v.key()].write()
     def keys(self):
