@@ -3,7 +3,7 @@ python:
    - "3.4"
 install: "pip install -r requirements.txt"
 script:
-   - coverage run --source=tammy `make test`
+   - coverage run --source=tammy tests/services.py
    - coverage report -m
 after_success:
    coveralls --verbose
