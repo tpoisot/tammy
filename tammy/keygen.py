@@ -54,13 +54,16 @@ def Yr(r):
     year = Year(r)
     return year[-2]+year[-1]
 
+def read_name(obj):
+    for author_type in ['family', 'literal']:
+        if author_type in obj[0]:
+            return clean_str(obj[0][author_type].capitalize().replace(' ','' ))
+
 def Author(r):
     if 'author' in r.content:
-        for author_type in ['family', 'literal']:
-            if author_type in r.content['author'][0]:
-                return clean_str(r.content['author'][0][author_type].capitalize().replace(' ',''))
-    elif 'publisher' in r.content:
-            return clean_str(r.content['publisher'].capitalize().replace(' ',''))
+        return read_name(r.content['author'])
+    elif 'editor' in r.content:
+        return read_name(r.content['editor'])
     return clean_str('Anonymous')
 
 def Aut(r):

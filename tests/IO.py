@@ -18,6 +18,7 @@ class a_import(unittest.TestCase):
         self.lib = tammy.library(cfile=config_file)
         self.lib.new(tammy.IO.get_from_file("tests/REF/readfrom/dev10.yaml", "citeproc-yaml"))
         self.lib.new(tammy.IO.get_from_file("tests/REF/readfrom/dev10a.yaml", "citeproc-yaml"))
+        self.lib.new(tammy.IO.get_from_file("tests/REF/readfrom/poi12b.yaml", "citeproc-yaml"))
     def test_1_unique_ids(self):
         assert "dev10" in self.lib.keys()
         assert "dev10a" in self.lib.keys()
@@ -36,6 +37,8 @@ class a_import(unittest.TestCase):
     def test_4_no_file(self):
         with self.assertRaises(ValueError):
             tammy.IO.get_from_file("tests/REF/readfrom/nofile.yaml", "citeproc-yaml")
+    def test_5_added_poi12c(self):
+        assert "poi12b" in self.lib.keys()
 
 
 class b_export(unittest.TestCase):

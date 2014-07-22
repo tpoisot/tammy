@@ -13,13 +13,18 @@ class Author(unittest.TestCase):
     @classmethod
     def setUp(self):
         self.lib = tammy.library(cfile=config_file)
-    def test_author_shortname(self):
+    def test_author_has_shortname(self):
         assert tammy.Author(self.lib.records['li03']) == 'Li'
-    def test_author_consortium(self):
+        assert tammy.Aut(self.lib.records['li03']) == 'Li'
+    def test_author_is_consortium(self):
         assert tammy.Aut(self.lib.records['rde08']) == 'Rde'
-    def test_author_space(self):
+    def test_author_is_editor(self):
+        assert tammy.Aut(self.lib.records['pas06']) == 'Pas'
+    def test_author_has_space(self):
         assert tammy.Author(self.lib.records['dem00']) == 'Demeeus'
         assert tammy.Aut(self.lib.records['dem00']) == 'Dem'
+    def test_anonymous_author(self):
+        assert tammy.Aut(self.lib.records['ano11']) == 'Ano'
 
 class Authoryear(unittest.TestCase):
     @classmethod
@@ -49,7 +54,6 @@ class SameNames(unittest.TestCase):
         self.lib = tammy.library(cfile=config_file)
     def test_same_names_years(self):
         assert 'poi12a' in self.lib.keys() and 'poi12' in self.lib.keys()
-        # TODO need to make sure that some are READ and ADDED too
 
 def main():
     if sys.version_info[1] < 7 :

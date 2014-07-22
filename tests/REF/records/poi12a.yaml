@@ -11,6 +11,7 @@ abstract: "Despite knowledge about microbial responses to abiotic stress, few st
   \ by a decrease in bacterial cell size, which we propose to be an associated cost.\
   \ We discuss these results in the context of bacterial ecology and phage-bacteria\
   \ co-evolution."
+id: poi12a
 author:
 - {family: Poisot, given: "Timoth\xE9e"}
 - {family: Bell, given: Thomas}
@@ -18,7 +19,6 @@ author:
 - {family: Gougat-barbera, given: Claire}
 - {family: Hochberg, given: Michael E}
 container-title: F1000 Research
-id: poi12a
 issue: '20'
 issued:
   date-parts:
