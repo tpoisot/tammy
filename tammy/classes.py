@@ -21,6 +21,12 @@ class library:
         Args:
             cfile: a string giving the path to a configuration file
         """
+        home = expanduser("~")
+        # We start with a default configuration
+        self.config = {
+                'bib_dir': home + '/.bib/',
+                'export_dir': home + '/.pandoc/'
+                }
         if not cfile:
         ## Look for a file LOCALLY first, then in home SECOND
             if isfile(expanduser(".tammy.yaml")):
@@ -29,12 +35,13 @@ class library:
                 cfile = "~/.tammy.yaml"
         if cfile:
             with open(expanduser(cfile), 'r') as configfile:
-                self.config = yaml.load(configfile)
-        else :
-            home = expanduser("~")
-            self.config = dict()
-            self.config['bib_dir'] = home + "/.bib/"
-        self.config['bib_dir'] = expanduser(self.config['bib_dir'])
+                # If a cfile is found, it is read and replace some config options
+                user_config = yaml.load(configfile)
+                for k, v in user_config.items():
+                    if k in self.config:
+                        self.config[k] = v
+        for folder in ['bib_dir', 'export_dir']:
+            self.config[folder] = expanduser(self.config[folder])
         self.created = datetime.datetime.now()
         self.records = dict()
         self.read(force=True)
@@ -89,7 +96,9 @@ class library:
                 self.records[v.key()].write()
     def keys(self):
         return self.records.keys()
-    def export(self, path="~/.pandoc", keys=None, output='citeproc-json'):
+    def export(self, path=None, keys=None, output='citeproc-json'):
+        if path == None:
+            path = self.config['export_dir']
         path = expanduser(path)
         if not keys == None :
             keys = [k for k in self.keys() if k in keys]

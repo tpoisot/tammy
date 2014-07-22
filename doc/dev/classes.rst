@@ -8,7 +8,7 @@ Classes
 Library
 -------
 
-.. autoclass:: library
+.. autoclass:: tammy.library
    :members:
 
 Record

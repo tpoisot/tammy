@@ -20,11 +20,15 @@ path. Second, in the directory in which you are currently working. Finally,
 in your ``$HOME``. Note that in the last two situations (I expect that the
 later is the standard), the file *must* be called ``.tammy.yaml``.
 
-At the moment, the only configurable option is the ``bib_dir`` variable, which
-will give the root of your library. By default, this is ``$HOME/.bib``. You
-can change it with ::
+At the moment, the only configurable options are the ``bib_dir`` and
+``export_dir`` variables, which will give respectively the the roots of your
+library, and where to export lists of references. By default, your library
+lives in ``$HOME/.bib``. You can change it with ::
 
-   bib_dir = $HOME/.references
+   bib_dir: $HOME/.references
+
+Also by default, the ``export_dir`` is ``$HOME/.pandoc``, so  that the files
+generated can be used directly from ``pandoc``.
 
 When ``tammy`` will read the content of your library, it will go look for
 references here. Over time, I will add options for the default citation key
@@ -54,3 +58,10 @@ every time, because it doesn't *exist* outside of your session. Rather, the
 ``python`` objects that allow you to interact with it will be created. Loading
 a lot of records *can* take some time, but it's a one-time thing. Future
 operations are really fast.
+
+A short note about design
+=========================
+
+.. TODO
+
+library / record objects

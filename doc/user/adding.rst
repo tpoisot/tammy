@@ -45,3 +45,4 @@ created. Alternatively, you *can* do: ::
    >>> lib.new(record)
 
 This will read a ``json`` file, and create a new record from it.
+

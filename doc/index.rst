@@ -7,9 +7,7 @@ Welcome to tammy's documentation!
 =================================
 
 ``tammy`` is a python module to manage your bibliography in a sane,
-minimalistic, scriptable, hacker-ish way.
-
-::
+minimalistic, scriptable, hacker-ish way.::
 
    >>> import tammy
    >>> lib = tammy.library()
@@ -32,9 +30,11 @@ User guide
    user/intro
    user/first
    user/adding
+   user/writing
+   user/attach
 
-API guide
----------
+Developer guide
+---------------
 
 .. toctree::
    :maxdepth: 2

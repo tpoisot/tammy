@@ -52,6 +52,5 @@ identifier, etc, is useful, so I am building a set of functions to do
 that. Also, if journals expose their papers in citeproc-JSON (as *PeerJ*
 does), it's easy to write a function for integration.
 
-
 With all these informations in hand, if you think ``tammy`` is right for you,
 read on!

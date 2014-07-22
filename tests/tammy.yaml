@@ -1,1 +1,2 @@
 bib_dir: 'tests/bib/'
+export_dir: 'tests/bib/'
