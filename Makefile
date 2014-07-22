@@ -1,4 +1,4 @@
-test: tests/*py
+test: tests/*.py
 	chmod +x tests/*py
 	mkdir -p tests/bib
 	mkdir -p tests/bib/records
