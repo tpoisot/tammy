@@ -32,7 +32,7 @@ class Authoryear(unittest.TestCase):
     def test_AuthorYr(self):
         assert tammy.AuthorYr(self.lib.records['poi13']) == 'Poisot13'
     def test_AuthorYear(self):
-        assert tammy.AuthorYear(self.lib.records['poi13']) == 'Poisot13'
+        assert tammy.AuthorYear(self.lib.records['poi13']) == 'Poisot2013'
     def test_AutYear(self):
         assert tammy.AutYear(self.lib.records['poi13']) == 'Poi2013'
     def test_AutYr(self):

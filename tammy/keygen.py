@@ -84,7 +84,7 @@ def AuthorYr(r):
     Smith et al. 2010 : Smith10
 
     """
-    tentative_key = Author() + Yr(r)
+    tentative_key = Author(r) + Yr(r)
     return tentative_key
 
 def AutYear(r):
@@ -126,11 +126,11 @@ def AUTYr(r):
     Smith et al. 2010 : SMI10
 
     """
-    return AutYr(r).lower()
+    return AutYr(r).upper()
 
 def AUTYear(r):
     """ AUT year format
 
     Smith et al. 2010 : SMI2010
     """
-    return AutYear(r).lower()
+    return AutYear(r).upper()
