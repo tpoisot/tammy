@@ -1,0 +1,33 @@
+DOI: 10.1111/j.1461-0248.2010.01493.x
+ISSN: '{1461023X}'
+URL: http://blackwell-synergy.com/doi/abs/10.1111/j.1461-0248.2010.01493.x
+abstract: 'Functional and phylogenetic diversity are increasingly quantified in various
+  fields of ecology and conservation biology. The need to maintain diversity turnover
+  among sites, so-called beta-diversity, has also been raised in theoretical and applied
+  ecology. In this study, we propose the first comprehensive framework for the large-scale
+  mapping of taxonomic, phylogenetic and functional diversity and of their respective
+  turnover. Using high-resolution data on the spatial distribution and abundance of
+  birds at a country scale, we disentangled areas of mismatches and congruencies between
+  biodiversity compo- nents. We further revealed unequal representation of each component
+  in protected areas: functional diversity was significantly under-represented whereas
+  taxonomic diversity was significantly over-represented in protected areas. Our results
+  challenge the use of any one diversity component as a surrogate for other components
+  and stress the need to adopt an integrative approach to biodiversity conservation.'
+author:
+- {family: Devictor, given: Vincent}
+- {family: Mouillot, given: David}
+- {family: Meynard, given: Christine}
+- {family: Jiguet, given: "Fr\xE9d\xE9ric"}
+- {family: Thuiller, given: Wilfried}
+- {family: Mouquet, given: Nicolas}
+container-title: Ecology Letters
+id: dev10a
+issue: '8'
+issued:
+  date-parts:
+  - [2010, 6]
+page: 1030-1040
+title: 'Spatial mismatch and congruence between taxonomic, phylogenetic and functional
+  diversity: the need for integrative conservation strategies in a changing world'
+type: article-journal
+volume: '13'

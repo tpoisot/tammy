@@ -1,0 +1,21 @@
+DOI: 10.1111/j.1365-2664.2009.01744.x
+author:
+- {family: Devictor, given: Vincent}
+- {family: Clavel, given: Joanna}
+- {family: Julliard, given: Romain}
+- {family: Lavergne, given: "S\xE9bastien"}
+- {family: Mouillot, given: David}
+- {family: Thuiller, given: Wilfried}
+- {family: "V\xE9nail", given: Patrick}
+- {family: "Vill\xE9ger", given: "S\xE9bastien"}
+- {family: Mouquet, given: Nicolas}
+container-title: Journal of Applied Ecology
+id: dev10
+issued:
+  date-parts:
+  - [2010]
+keyword: community, elton, grinnell, measures, specialization, toolbox
+page: 15-25
+title: Defining and measuring ecological specialization
+type: article-journal
+volume: '47'

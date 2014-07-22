@@ -2,8 +2,8 @@ prepare_tests:
 	mkdir -p tests/bib
 	mkdir -p tests/bib/records
 	mkdir -p tests/bib/files
-	cp mkdir tests/REF/records/* tests/bib/records/
-	cp mkdir tests/REF/files/* tests/bib/files/
+	cp tests/REF/records/* tests/bib/records/
+	#cp tests/REF/files/* tests/bib/files/
 	
 clean:
 	rm tests/bib/records/*
