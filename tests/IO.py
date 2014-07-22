@@ -23,7 +23,7 @@ class a_import(unittest.TestCase):
         assert "dev10" in self.lib.keys()
         assert "dev10a" in self.lib.keys()
     def test_2_write_files(self):
-        self.lib.update()
+        self.lib.write()
         assert os.path.isfile('tests/bib/records/dev10.yaml')
         assert os.path.isfile('tests/bib/records/dev10a.yaml')
         self.lib.export(path='tests/bib', output='citeproc-json')
@@ -56,7 +56,7 @@ class b_export(unittest.TestCase):
         with self.assertRaises(KeyError):
             self.lib.export(path='.', keys=None, output='bibtex')
     def test_only_some_keys(self):
-        self.lib.export(path='tests/bib/', keys=["poi12"], output="citeproc-yaml")
+        self.lib.export(keys=["poi12"], output="citeproc-yaml")
         record = tammy.IO.get_from_file("tests/bib/default.yaml", "citeproc-yaml")
         assert len(record) == 1
         assert record[0]['id'] == "poi12"
