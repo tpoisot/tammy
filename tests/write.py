@@ -49,7 +49,7 @@ class b_export(unittest.TestCase):
             self.lib.export(path='.', keys=None, output='bibtex')
     def test_only_some_keys(self):
         self.lib.export(path='tests/bib/', keys=["poi12"], output="citeproc-yaml")
-        record = tammy.IO.get_from_file("default.yaml", "citeproc-yaml")
+        record = tammy.IO.get_from_file("tests/bib/default.yaml", "citeproc-yaml")
         assert len(record) == 1
         assert record[0]['id'] == "poi12"
         os.remove('tests/bib/default.yaml')
