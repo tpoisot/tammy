@@ -5,6 +5,8 @@ test_folders:
 	
 clean:
 	rm tests/bib/records/*
+	rm default.yaml
+	rm tests/bib/default.{json,yaml}
 	#rm tests/bib/files/*
 
 test: run_tests.py

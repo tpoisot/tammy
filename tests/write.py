@@ -12,7 +12,7 @@ config_file = os.path.join(os.path.dirname(__file__), 'tammy.yaml')
 
 import tammy
 
-class SameNames(unittest.TestCase):
+class a_same_names(unittest.TestCase):
     @classmethod
     def setUp(self):
         self.lib = tammy.library(cfile=config_file)
@@ -27,20 +27,27 @@ class SameNames(unittest.TestCase):
         self.lib.update()
         assert os.path.isfile('./tests/bib/records/dev10.yaml')
 
-class Export(unittest.TestCase):
+class b_export(unittest.TestCase):
     @classmethod
     def setUp(self):
         self.lib = tammy.library(cfile=config_file)
     def test_write_json(self):
-        self.lib.export(path='.', keys=None, output='citeproc-json')
-        assert os.path.isfile('default.json')
+        self.lib.export(path='tests/bib/', keys=None, output='citeproc-json')
+        assert os.path.isfile('tests/bib/default.json')
     def test_write_yaml(self):
-        self.lib.export(path='.', keys=None, output='citeproc-json')
-        assert os.path.isfile('default.json')
+        self.lib.export(path='tests/bib/', keys=None, output='citeproc-yaml')
+        assert os.path.isfile('tests/bib/default.yaml')
+    def test_wrong_serializer(self):
+        with self.assertRaises(KeyError):
+            self.lib.export(path='.', keys=None, output='bibtex')
+    def test_only_some_keys(self):
+        self.lib.export(path='.', keys=["dev10"], output="citeproc-yaml")
+        record = tammy.IO.read_citeprocyaml("default.yaml")
+        assert len(record) == 1 and record['id'] == "dev10"
 
 def main():
     if sys.version_info[1] < 7 :
-        unittest.main()
+        unittest.main(verbosity=2)
     else :
         unittest.main(verbosity=2)
 
