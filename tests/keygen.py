@@ -29,19 +29,19 @@ class Authoryear(unittest.TestCase):
     def setUp(self):
         self.lib = tammy.library(cfile=config_file)
         self.lib.new(tammy.from_crossref_doi('10.1186/2192-1709-2-13'))
-    def AuthorYr(self):
+    def test_AuthorYr(self):
         assert tammy.AuthorYr(self.lib.records['poi13']) == 'Poisot13'
-    def AuthorYear(self):
+    def test_AuthorYear(self):
         assert tammy.AuthorYear(self.lib.records['poi13']) == 'Poisot13'
-    def AutYear(self):
+    def test_AutYear(self):
         assert tammy.AuthorYear(self.lib.records['poi13']) == 'Poi2013'
-    def AutYr(self):
+    def test_AutYr(self):
         assert tammy.AuthorYear(self.lib.records['poi13']) == 'Poi13'
-    def autYr(self):
+    def test_autYr(self):
         assert tammy.AuthorYear(self.lib.records['poi13']) == 'poi13'
-    def AUTYr(self):
+    def test_AUTYr(self):
         assert tammy.AuthorYear(self.lib.records['poi13']) == 'POI13'
-    def AUTYear(self):
+    def test_AUTYear(self):
         assert tammy.AuthorYear(self.lib.records['poi13']) == 'POI2013'
 
 
