@@ -30,10 +30,8 @@ class Year(unittest.TestCase):
     @classmethod
     def setUp(self):
         self.lib = tammy.library(cfile=config_file)
-        print(self.lib.keys())
     def test_Noyear(self):
         assert tammy.Year(self.lib.records['lixx']) == 'xxxx'
-
 
 class Authoryear(unittest.TestCase):
     @classmethod
