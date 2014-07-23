@@ -53,6 +53,9 @@ class Attach(unittest.TestCase):
         os.remove('tests/bib/files/poi12a_1.pdf')
         os.remove('tests/bib/files/poi12a_2.csv')
         os.remove('tests/bib/files/poi12a_cytflowdata.txt')
+    def test_4_no_file(self):
+        with self.assertRaises(ValueError):
+            self.lib.records['poi12a'].attach('no/such/file')
 
 def main():
     if sys.version_info[1] < 7 :

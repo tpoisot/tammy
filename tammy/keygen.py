@@ -48,7 +48,7 @@ def Year(r):
         if type_of_date in r.content:
             dpart = r.content[type_of_date]['date-parts'][0][0]
             return clean_str(str(dpart))
-    return clean_str('XXXX')
+    return clean_str('xxxx')
 
 def Yr(r):
     year = Year(r)
@@ -129,11 +129,11 @@ def AUTYr(r):
     Smith et al. 2010 : SMI10
 
     """
-    return AutYr(r).upper()
+    return Aut(r).upper() + Yr(r)
 
 def AUTYear(r):
     """ AUT year format
 
     Smith et al. 2010 : SMI2010
     """
-    return AutYear(r).upper()
+    return Aut(r).upper() + Year(r)

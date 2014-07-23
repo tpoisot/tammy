@@ -26,6 +26,15 @@ class Author(unittest.TestCase):
     def test_anonymous_author(self):
         assert tammy.Aut(self.lib.records['ano11']) == 'Ano'
 
+class Year(unittest.TestCase):
+    @classmethod
+    def setUp(self):
+        self.lib = tammy.library(cfile=config_file)
+        print(self.lib.keys())
+    def test_Noyear(self):
+        assert tammy.Year(self.lib.records['lixx']) == 'xxxx'
+
+
 class Authoryear(unittest.TestCase):
     @classmethod
     def setUp(self):
@@ -46,7 +55,6 @@ class Authoryear(unittest.TestCase):
         assert tammy.AUTYr(self.lib.records['poi12']) == 'POI12'
     def test_AUTYear(self):
         assert tammy.AUTYear(self.lib.records['poi12']) == 'POI2012'
-
 
 class SameNames(unittest.TestCase):
     @classmethod
