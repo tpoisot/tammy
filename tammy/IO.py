@@ -15,7 +15,7 @@ def export_citeprocyaml(records, path):
     with open(join(path, 'default.yaml'), 'w') as libfile:
         yaml.dump(records, libfile)
 
-def get_from_file(path, deserializer='citeproc-json'):
+def from_file(path, deserializer='citeproc-json'):
     """ Read record(s) from a file
 
     This function reads one or more records from a file. The

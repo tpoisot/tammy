@@ -16,9 +16,9 @@ class a_import(unittest.TestCase):
     @classmethod
     def setUp(self):
         self.lib = tammy.library(cfile=config_file)
-        self.lib.new(tammy.IO.get_from_file("tests/REF/readfrom/dev10.yaml", "citeproc-yaml"))
-        self.lib.new(tammy.IO.get_from_file("tests/REF/readfrom/dev10a.yaml", "citeproc-yaml"))
-        self.lib.new(tammy.IO.get_from_file("tests/REF/readfrom/poi12b.yaml", "citeproc-yaml"))
+        self.lib.new(tammy.IO.from_file("tests/REF/readfrom/dev10.yaml", "citeproc-yaml"))
+        self.lib.new(tammy.IO.from_file("tests/REF/readfrom/dev10a.yaml", "citeproc-yaml"))
+        self.lib.new(tammy.IO.from_file("tests/REF/readfrom/poi12b.yaml", "citeproc-yaml"))
     def test_1_unique_ids(self):
         assert "dev10" in self.lib.keys()
         assert "dev10a" in self.lib.keys()
@@ -33,10 +33,10 @@ class a_import(unittest.TestCase):
         os.remove('tests/bib/default.json')
     def test_3_read_unsupported(self):
         with self.assertRaises(ValueError):
-            tammy.IO.get_from_file("tests/REF/readfrom/dev10a.yaml", "RIS")
+            tammy.IO.from_file("tests/REF/readfrom/dev10a.yaml", "RIS")
     def test_4_no_file(self):
         with self.assertRaises(ValueError):
-            tammy.IO.get_from_file("tests/REF/readfrom/nofile.yaml", "citeproc-yaml")
+            tammy.IO.from_file("tests/REF/readfrom/nofile.yaml", "citeproc-yaml")
     def test_5_added_poi12c(self):
         assert "poi12b" in self.lib.keys()
 
@@ -57,7 +57,7 @@ class b_export(unittest.TestCase):
             self.lib.export(path='.', keys=None, output='bibtex')
     def test_only_some_keys(self):
         self.lib.export(keys=["poi12"], output="citeproc-yaml")
-        record = tammy.IO.get_from_file("tests/bib/default.yaml", "citeproc-yaml")
+        record = tammy.IO.from_file("tests/bib/default.yaml", "citeproc-yaml")
         assert len(record) == 1
         assert record[0]['id'] == "poi12"
         os.remove('tests/bib/default.yaml')
