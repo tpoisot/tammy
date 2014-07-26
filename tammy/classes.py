@@ -41,6 +41,8 @@ class library:
                     if k in self.config:
                         self.config[k] = v
         for folder in ['bib_dir', 'export_dir']:
+            if not os.path.exists(expanduser(self.config[folder])):
+                os.makedirs(expanduser(self.config[folder]))
             self.config[folder] = expanduser(self.config[folder])
         self.created = datetime.datetime.now()
         self.records = dict()
@@ -49,7 +51,7 @@ class library:
     def read(self, force=False):
         """Read the yaml files from the references folder
 
-        This method is called when the ``library`` class is instanciated,
+        This method is called when the ``library`` class is instantiated,
         and it ensures that all records are loaded. Because it calls the
         ``new`` method of the ``record`` class, if for some weird reason
         a file has no ``id`` field (*e.g.* you added it yourself), the key
