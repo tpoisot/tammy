@@ -48,6 +48,9 @@ class library:
         self.records = dict()
         self.read(force=True)
         self.update()
+    def __str__(self):
+        """ String with library infos """
+        return "Tammy library with "+str(len(self.keys()))+" records"
     def read(self, force=False):
         """Read the yaml files from the references folder
 
