@@ -10,16 +10,16 @@ integration with the CrossRef API, automated PDF downloads, etc.
 
 [READ THE DOC](http://tammy.readthedocs.org/en/latest/index.html#)
 
-`tammy` has been designed to meet *my* needs: a minimalistic references manager,
+I designed `tammy` to meet *my* needs: a minimalistic references manager,
 command-line based, scriptable, with a hard-to-corrupt database, that will play
 nicely with `pandoc`, and that is **not** based on `bibtex`.
 
 Storing the database as `yaml` files mean that
 
-1. I don't have to deal with running a database locally
-2. I can still use `grep` and other things to retrieve information
-3. A screw-up in one file won't corrupt my whole DB
-4. I can easily edit things manually
+1.  I don't have to deal with running a database locally
+2.  I can still use `grep` and other things to retrieve information
+3.  A screw-up in one file won't corrupt my whole DB
+4.  I can edit things manually (just in case)
 
 Yes, the name comes from [Parks & Rec][pr]. That show is awesome.
 
