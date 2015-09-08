@@ -56,3 +56,4 @@ docs/_build/
 default.json
 default.yaml
 tests/bib/*
+tests/tmp/*
