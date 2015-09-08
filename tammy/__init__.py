@@ -6,11 +6,6 @@ import os
 from os.path import expanduser
 from os.path import isfile
 
-# TODO
-# Validate ALL the things!!!
-# citeprocjs-schema-url = "https://raw.githubusercontent.com/citation-style-language/schema/master/csl-data.json"
-
-
 from .keygen import *
 
 from tammy.classes import library, record

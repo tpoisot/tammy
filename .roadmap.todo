@@ -1,3 +1,7 @@
+General:
+  [ ]  validate content https://raw.githubusercontent.com/citation-style-language/schema/master/csl-data.json @jsonschema
+
+
 Services:
   [ ]  Add the code to download PDF from Wiley
   [ ]  PeerJ code should also download and attach the PDF

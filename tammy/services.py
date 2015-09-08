@@ -3,8 +3,8 @@ import requests as re
 def from_crossref_doi(doi, base_url='http://dx.doi.org/'):
     """ Get a JSON record from a CrossRef DOI
 
-    The output of this function is a `dict` representation of the record,
-    that can be used directly by :func:`library.new`.
+    The output of this function is a `dict` representation of the record, that
+    can be used directly by :func:`library.new`.
 
     Args:
         doi: A string giving the DOI you want to look for
@@ -27,10 +27,9 @@ def from_crossref_doi(doi, base_url='http://dx.doi.org/'):
 def from_peerj(pubid, pubtype='article'):
     """ Get a JSON record from a PeerJ article or preprint
 
-    PeerJ just rolled out an experimental citeproc-json feed for
-    their articles (June 8, 2014). This function first attempts to use
-    it first, and if it fails, I default to getting the doi from
-    the JSON file, then using CrossRef.
+    PeerJ just rolled out an experimental citeproc-json feed for their articles
+    (June 8, 2014). This function attempts to use it first, and if it fails, I
+    default to getting the doi from the JSON file, then using CrossRef.
 
     Args:
         pubid: An integer (or string) giving the article/preprint id
