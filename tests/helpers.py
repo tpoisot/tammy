@@ -14,6 +14,8 @@ class StringClear(unittest.TestCase):
         assert tammy.keygen.clean_str(u'éäio') == 'eaio'
     def test_str_to_str(self):
         assert tammy.keygen.clean_str(u'eaio') == 'eaio'
+    def test_tokenize_unicode(self):
+        assert tammy.keygen.tokenize_string(u'éabCD éfgh') == ['eabcd', 'efgh']
 
 def main():
     if sys.version_info[1] < 7 :

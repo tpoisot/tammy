@@ -129,9 +129,9 @@ class record:
         """ Generates a citation key from the record information
 
         At the moment, citations keys are created as autyr scheme plus one
-        letter if this is required to make the citation key unique. Note
-        that the citation key is also the filename of the record, so that
-        a record whose key is ``Doe2004`` will be written at ``Doe2004.yaml``.
+        letter if this is required to make the citation key unique. Note that
+        the citation key is also the filename of the record, so that a record
+        whose key is ``Doe2004`` will be written at ``Doe2004.yaml``.
 
         Args:
             keymaker: a function returning a string with the record id,

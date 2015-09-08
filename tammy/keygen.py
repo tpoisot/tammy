@@ -8,6 +8,20 @@ def clean_str(s):
     """
     return unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode()
 
+def tokenize_string(s):
+    """ Takes a string, and return a list of words
+
+    #. the string is splitted on all whitespace
+    #. each word is lowercased
+    #. words shorther than 3 letters are removed
+    #. the resulting array is returned
+
+    """
+    tokens = filter(lambda t: len(t) > 2, map(lambda x: x.lower(), s.split(' ')))
+    # TODO what if there are no elements left?
+    return list(tokens)
+
+
 def makeunique(r, tentative_key):
     """ Make a citation key unique
 
@@ -137,21 +151,3 @@ def AUTYear(r):
     Smith et al. 2010 : SMI2010
     """
     return Aut(r).upper() + Year(r)
-
-def tokenize_title(r):
-    """ Takes a title, and return a list of words
-
-    #. the string is splitted on all whitespace
-    #. each word is lowercased
-    #. words shorther than 3 letters are removed
-    #. the resulting array is returned
-
-    """
-    if 'title' in r.content:
-        title = r.content['title']
-    else:
-        title = "no title"
-    title = clean_str(title)
-    tokens = filter(lambda t: len(t) > 2, map(lambda x: x.lower(), title.split(' ')))
-    # TODO what if there are no elements left?
-    return list(tokens)

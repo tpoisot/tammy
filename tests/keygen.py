@@ -61,13 +61,6 @@ class SameNames(unittest.TestCase):
     def test_same_names_years(self):
         assert 'poi12a' in self.lib.keys() and 'poi12' in self.lib.keys()
 
-class TitleFunctions(unittest.TestCase):
-    @classmethod
-    def setUp(self):
-        self.lib = tammy.library(cfile=config_file)
-    def test_title_is_tokenized(self):
-        assert tammy.tokenize_title(self.lib.records['poi12'])[0] == 'labc'
-
 def main():
     if sys.version_info[1] < 7 :
         unittest.main()
