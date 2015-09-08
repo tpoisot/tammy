@@ -141,19 +141,17 @@ def AUTYear(r):
 def tokenize_title(r):
     """ Takes a title, and return a list of words
 
-    - each word is lowercased
-    - words shorther than 3 letters are removed
+    #. the string is splitted on all whitespace
+    #. each word is lowercased
+    #. words shorther than 3 letters are removed
+    #. the resulting array is returned
 
     """
     if 'title' in r.content:
         title = r.content['title']
     else:
         title = "no title"
-    # Cleans the string and substitute non ascii chars
     title = clean_str(title)
-    # The next line will
-    # 1. split on each word
-    # 2. lowercase
-    # 3. remove short words
     tokens = filter(lambda t: len(t) > 2, map(lambda x: x.lower(), title.split(' ')))
+    # TODO what if there are no elements left?
     return list(tokens)
