@@ -1,0 +1,6 @@
+IO:
+  [ ]  Add the code to download PDF from Wiley
+
+Keys:
+  [ ]  Think about the best way NOT to use year
+  [ ]  Add a key to the config file to generate the key

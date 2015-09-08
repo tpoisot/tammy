@@ -63,8 +63,10 @@ class SameNames(unittest.TestCase):
 
 class TitleFunctions(unittest.TestCase):
     @classmethod
+    def setUp(self):
+        self.lib = tammy.library(cfile=config_file)
     def test_title_is_tokenized(self):
-        assert tokenize_title("It has a short title") == ["short", "title"]
+        assert tammy.tokenize_title(self.lib.records['poi12'])[0] == 'labc'
 
 def main():
     if sys.version_info[1] < 7 :
