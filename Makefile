@@ -9,4 +9,3 @@ prepare_tests:
 coverage: prepare_tests run_tests.py
 	coverage run --source=tammy run_tests.py
 	coverage report -m
-

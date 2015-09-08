@@ -6,7 +6,7 @@ setup(
         version='0.0.1',
         description='Bibliographic management the Python way',
         author='Timothée Poisot',
-        author_email='t.poisot@gmail.com',
+        author_email='tim@poisotlab.io',
         url='http://tammy.readthedocs.org/en/latest/',
         packages=['tammy']
         )
