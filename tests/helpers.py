@@ -15,7 +15,6 @@ class StringClear(unittest.TestCase):
     def test_str_to_str(self):
         assert tammy.keygen.clean_str(u'eaio') == 'eaio'
     def test_tokenize_unicode(self):
-        print(tammy.keygen.tokenize_string(u'éabCD éfgh'))
         assert tammy.keygen.tokenize_string(u'éabCD éfgh') == ['eabcd', 'efgh']
 
 def main():

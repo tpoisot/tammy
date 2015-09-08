@@ -17,7 +17,7 @@ def tokenize_string(s):
     #. the resulting array is returned
 
     """
-    tokens = filter(lambda t: len(t) > 2, map(lambda x: x.lower(), s.split(' ')))
+    tokens = filter(lambda t: len(t) > 2, map(lambda x: clean_str(x).lower(), s.split(' ')))
     # TODO what if there are no elements left?
     return list(tokens)
 
