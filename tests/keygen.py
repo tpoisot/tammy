@@ -61,6 +61,11 @@ class SameNames(unittest.TestCase):
     def test_same_names_years(self):
         assert 'poi12a' in self.lib.keys() and 'poi12' in self.lib.keys()
 
+class TitleFunctions(unittest.TestCase):
+    @classmethod
+    def test_title_is_tokenized(self):
+        assert tokenize_title("It has a short title") == ["short", "title"]
+
 def main():
     if sys.version_info[1] < 7 :
         unittest.main()

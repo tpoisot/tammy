@@ -6,7 +6,7 @@ prepare_tests:
 	cp tests/REF/records/* tests/bib/records/
 	cp tests/REF/files/* tests/tmp
 
-coverage: prepare_tests run_tests.py
+test: prepare_tests run_tests.py
 	coverage run --source=tammy run_tests.py
 	coverage report -m
 

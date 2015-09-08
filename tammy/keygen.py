@@ -137,3 +137,23 @@ def AUTYear(r):
     Smith et al. 2010 : SMI2010
     """
     return Aut(r).upper() + Year(r)
+
+def tokenize_title(r):
+    """ Takes a title, and return a list of words
+
+    - each word is lowercased
+    - words shorther than 3 letters are removed
+
+    """
+    if 'title' in r.content:
+        title = r.content['title']
+    else:
+        title = "no title"
+    # Cleans the string and substitute non ascii chars
+    title = clean_str(title)
+    # The next line will
+    # 1. split on each word
+    # 2. lowercase
+    # 3. remove short words
+    tokens = filter(lambda t: len(t) > 2, map(lambda x: x.lower(), title.split(' ')))
+    return list(tokens)
