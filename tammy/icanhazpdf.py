@@ -6,6 +6,11 @@ import urllib.request
 
 # List of publisher-specific code
 
+def is_it_wiley(doi):
+    if not re.search(re.compile(u"10\.1111"), doi) is None:
+        return True
+    return False
+
 def get_wiley_pdf(doi):
     getpdf = re.compile(u'id="pdfDocument" src="(.+asset.+)" width')
     _url = "http://onlinelibrary.wiley.com/doi/" + doi + "/pdf"
@@ -16,19 +21,20 @@ def get_wiley_pdf(doi):
     else:
         raise ValueError("No PDF (or unable to access)")
 
-# List of regexp
-publisher_regex = {"wiley": get_wiley_pdf}
-
-def is_it_wiley(doi):
-    if not re.search(re.compile(u"10\.1111"), doi) is None:
-        return True
-    return False
-
 def is_it_peerj(doi):
     if not re.search(re.compile(u'peerj'), doi) is None:
         return True
     return False
 
+def get_peerj_pdf(doi):
+    # TODO check paper first, preprint second
+    # then return the correct URL
+    raise ValueError("Not implemented")
+
+# List of regexp
+publisher_regex = {"wiley": get_wiley_pdf}
+
+# Wrapper to detect the publisher
 def detect_publisher(r):
     # NOTE This is fugly
     if is_it_peerj(r.content["DOI"]):
