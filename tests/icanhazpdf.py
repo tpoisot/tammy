@@ -22,9 +22,9 @@ class Wiley(unittest.TestCase):
         This test checks that
         1. the file is attached
         """
-        get_pdf_from_ref(self.lib.records['lio15'])
-        assert os.path.isfile('tests/bib/files/lio15_pdf(auto).pdf')
-        
+        tammy.icanhazpdf.get_pdf_from_ref(self.lib.records['lio15'])
+        assert os.path.isfile('tests/bib/files/lio15_maintext.pdf')
+
 def main():
     if sys.version_info[1] < 7 :
         unittest.main(verbosity=2)
