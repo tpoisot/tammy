@@ -40,9 +40,9 @@ class TammyList(npyscreen.NPSApp):
                     ] for key, rec in self.lib.records.items()
                 ]
         ref_list.values = RefList
-        ## Series of filters
+        # Series of filters
         filter_title = F.add(npyscreen.TitleText, name='Titles: ')
-        ## Make the form active
+        # Make the form active
         F.edit()
 
 if __name__ == "__main__":

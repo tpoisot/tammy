@@ -21,7 +21,6 @@ def tokenize_string(s):
     # TODO what if there are no elements left?
     return list(tokens)
 
-
 def makeunique(r, tentative_key):
     """ Make a citation key unique
 
@@ -151,3 +150,27 @@ def AUTYear(r):
     Smith et al. 2010 : SMI2010
     """
     return Aut(r).upper() + Year(r)
+
+def title_twowords(r):
+    """ First two words
+
+    """
+    title = "Unknown Title"
+    if 'title' in r.content:
+        title = r.content['title']
+    title = tokenize_string(title)
+    if len(title) > 2:
+        title = title[0:2]
+    return ''.join(title)
+
+def title_twoletters(r):
+    """ First letters of first two words
+
+    """
+    title = "Unknown Title"
+    if 'title' in r.content:
+        title = r.content['title']
+    title = tokenize_string(title)
+    if len(title) > 2:
+        title = title[0:2]
+    return ''.join(list(map(lambda x: x[0], title)))

@@ -9,6 +9,14 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 config_file = os.path.join(os.path.dirname(__file__), 'tammy.yaml')
 import tammy
 
+class Title(unittest.TestCase):
+    @classmethod
+    def setUp(self):
+        self.lib = tammy.library(cfile=config_file)
+    def test_title_shorteners(self):
+        assert tammy.title_twowords(self.lib.records['li03']) == "dnamicroarray"
+        assert tammy.title_twoletters(self.lib.records['li03']) == "dm"
+
 class Author(unittest.TestCase):
     @classmethod
     def setUp(self):
