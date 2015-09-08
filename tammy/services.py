@@ -59,4 +59,3 @@ def from_peerj(pubid, pubtype='article'):
             raise ValueError("Both methods to retrieve the PeerJ info failed")
     else :
         raise ValueError("No PeerJ " + pubtype + " with this ID")
-
