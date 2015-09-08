@@ -1,3 +1,9 @@
+pip3 = python3 -m pip
+req = requirements.txt
+
+dependencies:
+	$(pip3) install -r $(req)
+
 prepare_tests:
 	mkdir -p tests/bib
 	mkdir -p tests/bib/records
