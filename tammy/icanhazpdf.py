@@ -1,7 +1,6 @@
 import re
 import requests
 import tempfile
-import hashlib
 import urllib.request
 
 # List of publisher-specific code
@@ -49,7 +48,7 @@ def get_pdf_from_ref(r):
         raise KeyError("ICanHazPDF module needs a DOI")
     doi = r.content["DOI"]
     publisher = detect_publisher(r)
-    _fname = hashlib.md5(doi.encode()).hexdigest()+".pdf"
+    _fname = '.'.join(doi.split('/'))+".pdf"
     _url = publisher_regex[publisher](doi)
     urllib.request.urlretrieve(_url, filename=_fname)
     r.attach(_fname, "maintext")
