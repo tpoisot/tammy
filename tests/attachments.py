@@ -25,18 +25,6 @@ class Attach(unittest.TestCase):
         self.lib.records['poi12'].attach('tests/tmp/poi12.pdf', 'published')
         assert os.path.isfile('tests/bib/files/poi12_published.pdf')
         self.lib.update()
-    def test_2_change_key(self):
-        """
-        This test checks that
-        1. When a key is changed, the files are changed too
-        """
-        self.lib.records['poi12'].generate_key(tammy.AuthorYear)
-        self.lib.update()
-        assert "poi12" not in self.lib.keys()
-        assert os.path.isfile("tests/bib/files/Poisot2012_published.pdf")
-        os.remove('tests/bib/files/Poisot2012_published.pdf')
-        os.remove('tests/bib/records/Poisot2012.yaml')
-        shutil.copyfile('tests/REF/records/poi12.yaml', 'tests/bib/records/poi12.yaml')
     def test_3_attach_several(self):
         """
         This test checks that

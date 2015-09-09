@@ -19,6 +19,7 @@ test: prepare_tests run_tests.py
 
 clean:
 	rm -r tests/tmp
+	rm -r tests/bib
 
 install:
 	$(python3) setup.py install

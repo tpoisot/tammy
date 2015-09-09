@@ -5,7 +5,7 @@ from os.path import expanduser
 from os.path import isfile, join, splitext
 import yaml
 
-from .keygen import autYr, makeunique
+from .keygen import makeunique
 from .cleanup import clean_all
 from .IO import serializer
 
@@ -25,7 +25,8 @@ class library:
         # We start with a default configuration
         self.config = {
                 'bib_dir': home + '/.bib/',
-                'export_dir': home + '/.pandoc/'
+                'export_dir': home + '/.pandoc/',
+                'key': ["aut", "_", "tl"] # NOTE experimental - specify key format
                 }
         if not cfile:
         ## Look for a file LOCALLY first, then in home SECOND
@@ -125,7 +126,7 @@ class record:
         self.library = library
         if (not 'id' in self.content) or new:
             self.generate_key()
-    def generate_key(self, keymaker=AUTtl):
+    def generate_key(self):
         """ Generates a citation key from the record information
 
         At the moment, citations keys are created as autyr scheme plus one
@@ -139,7 +140,7 @@ class record:
 
         """
         self.changed = True
-        makeunique(self, keymaker(self))
+        makeunique(self)
     def key(self):
         """ Outputs the unique citation key for the record
 

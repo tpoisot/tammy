@@ -21,7 +21,36 @@ def tokenize_string(s):
     # TODO what if there are no elements left?
     return list(tokens)
 
-def makeunique(r, tentative_key):
+def makekey(r):
+    """
+    Generate a key based on config file
+    """
+    formatters = {
+        # Author formatting
+        "aut": lambda x: Aut(x).lower(),
+        "Aut": lambda x: Aut(x),
+        "AUT": lambda x: Aut(x).upper(),
+        "author": lambda x: Author().lower(),
+        "Author": lambda x: Author(x),
+        "AUTHOR": lambda x: Author(x).upper(),
+        # Years
+        "Year": lambda x: Year(x),
+        "Yr": lambda x: Yr(x),
+        # Title
+        "tl": lambda x: title_threeletters(x),
+        "tw": lambda x: title_threewords(x)
+    }
+    keyformat = r.library.config['key']
+    key = []
+    for element in keyformat:
+        if element in formatters:
+            key.append(formatters[element](r))
+        else:
+            key.append(element)
+    return ''.join(map(str, key))
+
+
+def makeunique(r):
     """ Make a citation key unique
 
     This function will perform the following steps, in order:
@@ -29,22 +58,22 @@ def makeunique(r, tentative_key):
         #. encode the key in ascii to remove any funky characters, so that
         for example, ``çél2014`` will become ``cel2014``.
 
-        #. check that the key if unique in the library. If this is not the
-        case, then it will loop through all (lowercase) letters, append them
-        to the key, and if this is unique, write it.
+        #. check that the key if unique in the library. If this is not the case,
+        then it will loop through numbers to find a unique combination. This
+        will result in, e.g., Doe2014_3
 
     Returns:
         Nothing, but changes the ``id`` key of the ``content`` of the record.
 
     """
+    tentative_key = makekey(r)
     if not tentative_key in r.library.keys():
         r.content['id'] = tentative_key
     else :
-        alphabet = list(string.ascii_lowercase)
-        i = 0
-        while(tentative_key+alphabet[i] in r.library.keys()):
+        i = 2
+        while tentative_key+"_"+str(i) in r.library.keys():
             i = i + 1
-        tk = tentative_key + alphabet[i]
+        tk = tentative_key+"_"+str(i)
         r.content['id'] = tk
 
 def Year(r):
@@ -85,72 +114,6 @@ def Aut(r):
     else :
         return Author(r)[0:3]
 
-def AuthorYear(r):
-    """ Author year format
-
-    Smith et al. 2010 : Smith2010
-
-    """
-    tentative_key = Author(r) + Year(r)
-    return tentative_key
-
-def AuthorYr(r):
-    """ Author yr format
-
-    Smith et al. 2010 : Smith10
-
-    """
-    tentative_key = Author(r) + Yr(r)
-    return tentative_key
-
-def AutYear(r):
-    """ Author year format
-
-    Smith et al. 2010 : Smi2010
-
-    """
-    tentative_key = Aut(r) + Year(r)
-    return tentative_key
-
-def AutYr(r):
-    """ Author yr format
-
-    Smith et al. 2010 : Smi10
-
-    """
-    tentative_key = Aut(r) + Yr(r)
-    return tentative_key
-
-def autYr(r):
-    """ aut yr format
-
-    Smith et al. 2010 : smi10
-
-    """
-    return AutYr(r).lower()
-
-def autYear(r):
-    """ aut year format
-
-    Smith et al. 2010 : smi2010
-    """
-    return AutYear(r).lower()
-
-def AUTYr(r):
-    """ AUT yr format
-
-    Smith et al. 2010 : SMI10
-
-    """
-    return Aut(r).upper() + Yr(r)
-
-def AUTYear(r):
-    """ AUT year format
-
-    Smith et al. 2010 : SMI2010
-    """
-    return Aut(r).upper() + Year(r)
-
 def title_threewords(r):
     """ First two words
 
@@ -174,9 +137,3 @@ def title_threeletters(r):
     if len(title) > 3:
         title = title[0:3]
     return ''.join(list(map(lambda x: x[0], title)))
-
-def AUTtl(r):
-    """
-    AUT:tl
-    """
-    return AUT(r) + ":" + title_twoletters(r)

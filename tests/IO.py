@@ -19,9 +19,10 @@ class a_import(unittest.TestCase):
         self.lib.new(tammy.IO.from_file("tests/REF/readfrom/dev10.yaml", "citeproc-yaml"))
         self.lib.new(tammy.IO.from_file("tests/REF/readfrom/dev10a.yaml", "citeproc-yaml"))
         self.lib.new(tammy.IO.from_file("tests/REF/readfrom/poi12b.yaml", "citeproc-yaml"))
+        print(self.lib.keys())
     def test_1_unique_ids(self):
-        assert "dev10" in self.lib.keys()
-        assert "dev10a" in self.lib.keys()
+        assert "dev_dme" in self.lib.keys()
+        assert "dev_sma" in self.lib.keys()
     def test_2_write_files(self):
         self.lib.write()
         assert os.path.isfile('tests/bib/records/dev10.yaml')

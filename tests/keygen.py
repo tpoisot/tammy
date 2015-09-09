@@ -14,8 +14,8 @@ class Title(unittest.TestCase):
     def setUp(self):
         self.lib = tammy.library(cfile=config_file)
     def test_title_shorteners(self):
-        print(tammy.title_threewords(self.lib.records['li03']))
-        print(tammy.title_threeletters(self.lib.records['li03']))
+        assert tammy.title_threewords(self.lib.records['li03']) == "dnamicroarraytechnology"
+        assert tammy.title_threeletters(self.lib.records['li03']) == "dmt"
 
 class Author(unittest.TestCase):
     @classmethod
@@ -39,28 +39,7 @@ class Year(unittest.TestCase):
     def setUp(self):
         self.lib = tammy.library(cfile=config_file)
     def test_Noyear(self):
-        assert tammy.Year(self.lib.records['lixx']) == 'xxxx'
-
-class Authoryear(unittest.TestCase):
-    @classmethod
-    def setUp(self):
-        self.lib = tammy.library(cfile=config_file)
-    def test_AuthorYr(self):
-        assert tammy.AuthorYr(self.lib.records['poi12']) == 'Poisot12'
-    def test_AuthorYear(self):
-        assert tammy.AuthorYear(self.lib.records['poi12']) == 'Poisot2012'
-    def test_AutYear(self):
-        assert tammy.AutYear(self.lib.records['poi12']) == 'Poi2012'
-    def test_AutYr(self):
-        assert tammy.AutYr(self.lib.records['poi12']) == 'Poi12'
-    def test_autYr(self):
-        assert tammy.autYr(self.lib.records['poi12']) == 'poi12'
-    def test_autYear(self):
-        assert tammy.autYear(self.lib.records['poi12']) == 'poi2012'
-    def test_AUTYr(self):
-        assert tammy.AUTYr(self.lib.records['poi12']) == 'POI12'
-    def test_AUTYear(self):
-        assert tammy.AUTYear(self.lib.records['poi12']) == 'POI2012'
+        assert tammy.Year(self.lib.records['li_dmt']) == 'xxxx'
 
 class SameNames(unittest.TestCase):
     @classmethod
