@@ -3,12 +3,15 @@ General:
 
 
 Services:
-  [ ]  Add the code to download PDF from Wiley
   [ ]  PeerJ code should also download and attach the PDF
 
 IO:
   [ ]  Read records from a bibtex file using pandoc
 
 Keys:
-  [ ]  Think about the best way NOT to use year
-  [ ]  Add a key to the config file to generate the key @longterm
+
+---
+Archive:
+  [x]  Add the code to download PDF from Wiley @done(2015-09-09 15:25) @project(Services)
+  [x]  Think about the best way NOT to use year @done(2015-09-09 15:25) @project(Keys)
+  [x]  Add a key to the config file to generate the key @longterm @done(2015-09-09 15:25) @project(Keys)
