@@ -1,4 +1,5 @@
-pip3 = python3 -m pip
+python3 = python3
+pip3 = $(python3) -m pip
 req = requirements.txt
 
 dependencies:
@@ -18,3 +19,6 @@ test: prepare_tests run_tests.py
 
 clean:
 	rm -r tests/tmp
+
+install:
+	$(python3) setup.py install

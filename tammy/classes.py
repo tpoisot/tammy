@@ -125,7 +125,7 @@ class record:
         self.library = library
         if (not 'id' in self.content) or new:
             self.generate_key()
-    def generate_key(self, keymaker=autYr):
+    def generate_key(self, keymaker=AUTtl):
         """ Generates a citation key from the record information
 
         At the moment, citations keys are created as autyr scheme plus one
@@ -146,6 +146,8 @@ class record:
         Returns:
             a unicode string with the citation key
         """
+        if not "id" in self.content:
+            self.generate_key()
         return self.content['id']
     def attach(self, fpath, title=None):
         if not isfile(fpath):

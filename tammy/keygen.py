@@ -151,7 +151,7 @@ def AUTYear(r):
     """
     return Aut(r).upper() + Year(r)
 
-def title_twowords(r):
+def title_threewords(r):
     """ First two words
 
     """
@@ -159,11 +159,11 @@ def title_twowords(r):
     if 'title' in r.content:
         title = r.content['title']
     title = tokenize_string(title)
-    if len(title) > 2:
-        title = title[0:2]
+    if len(title) > 3:
+        title = title[0:3]
     return ''.join(title)
 
-def title_twoletters(r):
+def title_threeletters(r):
     """ First letters of first two words
 
     """
@@ -171,6 +171,12 @@ def title_twoletters(r):
     if 'title' in r.content:
         title = r.content['title']
     title = tokenize_string(title)
-    if len(title) > 2:
-        title = title[0:2]
+    if len(title) > 3:
+        title = title[0:3]
     return ''.join(list(map(lambda x: x[0], title)))
+
+def AUTtl(r):
+    """
+    AUT:tl
+    """
+    return AUT(r) + ":" + title_twoletters(r)
