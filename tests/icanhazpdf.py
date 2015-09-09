@@ -25,6 +25,17 @@ class Wiley(unittest.TestCase):
         tammy.icanhazpdf.get_pdf_from_ref(self.lib.records['lio15'])
         assert os.path.isfile('tests/bib/files/lio15_maintext.pdf')
 
+class PeerJ(unittest.TestCase):
+    @classmethod
+    def setUp(self):
+        self.lib = tammy.library(cfile=config_file)
+    def test_attach_peerj_pdf(self):
+        record = tammy.from_peerj(251, 'article')
+        self.lib.new(record)
+        tammy.icanhazpdf.get_pdf_from_ref(self.lib.records['poi_wen'])
+        assert os.path.isfile('tests/bib/files/poi_wen_maintext.pdf')
+
+
 def main():
     if sys.version_info[1] < 7 :
         unittest.main(verbosity=2)

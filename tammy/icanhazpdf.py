@@ -26,12 +26,23 @@ def is_it_peerj(doi):
     return False
 
 def get_peerj_pdf(doi):
-    # TODO check paper first, preprint second
     # then return the correct URL
-    raise ValueError("Not implemented")
+    if not re.search(re.compile(u'preprint'), doi) is None:
+        # preprint
+        raise ValueError("Not implemented")
+    else:
+        # not preprint
+        get_art_id = re.compile(u'peerj\\.(.+)')
+        search_result = re.search(get_art_id, doi)
+        if not search_result == None:
+            a_id = search_result.group(1)
+            _url = "https://peerj.com/articles/" + str(a_id) + ".pdf"
+            return _url
+    raise ValueError("No such PeerJ resource")
+
 
 # List of regexp
-publisher_regex = {"wiley": get_wiley_pdf}
+publisher_regex = {"wiley": get_wiley_pdf, "peerj": get_peerj_pdf}
 
 # Wrapper to detect the publisher
 def detect_publisher(r):

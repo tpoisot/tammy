@@ -40,7 +40,6 @@ class a_import(unittest.TestCase):
     def test_5_added_poi12c(self):
         assert "poi_dsi" in self.lib.keys()
 
-
 class b_export(unittest.TestCase):
     @classmethod
     def setUp(self):
@@ -66,7 +65,7 @@ def main():
     if sys.version_info[1] < 7 :
         unittest.main(verbosity=2)
     else :
-        unittest.main(verbosity=2)
+        unittest.main(verbosity=3)
 
 if __name__ == '__main__':
     main()

@@ -17,7 +17,7 @@ def tokenize_string(s):
     #. the resulting array is returned
 
     """
-    swords = ["in", "of", "and", "a", "the"]
+    swords = ["in", "of", "and", "a", "the", "an", "is", "or"]
     tokens = filter(lambda t: len(t) > 2, map(lambda x: clean_str(x).lower(), s.split(' ')))
     tokens = filter(lambda t: t not in swords, tokens)
     tokens = list(tokens)
