@@ -17,14 +17,12 @@ def tokenize_string(s):
     #. the resulting array is returned
 
     """
-    print(s)
     swords = ["in", "of", "and", "a", "the"]
     tokens = filter(lambda t: len(t) > 2, map(lambda x: clean_str(x).lower(), s.split(' ')))
     tokens = filter(lambda t: t not in swords, tokens)
     tokens = list(tokens)
     if len(tokens) == 0:
         tokens = ["x"]
-    print(tokens)
     return tokens
 
 def makekey(r):
