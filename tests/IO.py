@@ -16,9 +16,9 @@ class a_import(unittest.TestCase):
     @classmethod
     def setUp(self):
         self.lib = tammy.library(cfile=config_file)
-        self.lib.new(tammy.IO.from_file("tests/REF/readfrom/dev10.yaml", "citeproc-yaml"))
-        self.lib.new(tammy.IO.from_file("tests/REF/readfrom/dev10a.yaml", "citeproc-yaml"))
-        self.lib.new(tammy.IO.from_file("tests/REF/readfrom/poi12b.yaml", "citeproc-yaml"))
+        self.lib.new(tammy.IO.from_file("tests/REF/readfrom/dev10.yaml", "citeproc-yaml"), True)
+        self.lib.new(tammy.IO.from_file("tests/REF/readfrom/dev10a.yaml", "citeproc-yaml"), True)
+        self.lib.new(tammy.IO.from_file("tests/REF/readfrom/poi12b.yaml", "citeproc-yaml"), True)
     def test_1_unique_ids(self):
         assert "dev_dme" in self.lib.keys()
         assert "dev_smc" in self.lib.keys()
