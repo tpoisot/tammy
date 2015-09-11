@@ -180,5 +180,5 @@ class record:
         self.changed = False
     def has_doi(self):
         return "DOI" in self.content
-    def has_file(self):
-        return "file" in self.content
+    def has_files(self):
+        return "files" in self.content
