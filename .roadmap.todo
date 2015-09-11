@@ -10,12 +10,15 @@ IO:
 
 Keys:
 
+Attachments:
+  [ ]  Have a saner scheme for attachments. AUT/author_journal_title_key_type.pdf ?
+
 I Can Haz PDF:
   [ ]  PeerJ preprints
-  [ ]  PeerJ
 
 ---
 Archive:
+  [x]  PeerJ @done(2015-09-10 21:45) @project(I Can Haz PDF)
   [x]  Add the code to download PDF from Wiley @done(2015-09-09 15:25) @project(Services)
   [x]  Think about the best way NOT to use year @done(2015-09-09 15:25) @project(Keys)
   [x]  Add a key to the config file to generate the key @longterm @done(2015-09-09 15:25) @project(Keys)
