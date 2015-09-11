@@ -2,6 +2,7 @@ General:
   [ ]  validate content https://raw.githubusercontent.com/citation-style-language/schema/master/csl-data.json @jsonschema
   [ ]  Check @bug when reading an empty file
   [ ]  Empty files when update is interrupted @bug
+  [ ]  Ref file not deleted when key is updated @bug
 
 Services:
   [ ]  PeerJ code should also download and attach the PDF
