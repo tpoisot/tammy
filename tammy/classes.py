@@ -178,3 +178,7 @@ class record:
         with open(path, 'w') as outfile:
             outfile.write(yaml.safe_dump(self.content))
         self.changed = False
+    def has_doi(self):
+        return "DOI" in self.content
+    def has_file(self):
+        return "file" in self.content
