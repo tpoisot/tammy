@@ -1,6 +1,6 @@
 General:
   [ ]  validate content https://raw.githubusercontent.com/citation-style-language/schema/master/csl-data.json @jsonschema
-
+  [ ]  Check @bug when reading an empty file
 
 Services:
   [ ]  PeerJ code should also download and attach the PDF
@@ -15,6 +15,7 @@ Attachments:
 
 I Can Haz PDF:
   [ ]  PeerJ preprints
+  [ ]  PLOS journals
 
 ---
 Archive:

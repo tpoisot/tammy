@@ -40,9 +40,20 @@ def get_peerj_pdf(doi):
             return _url
     raise ValueError("No such PeerJ resource")
 
+def is_it_plos(doi):
+    if not re.search(re.compile(u'10\.1371/journal\.p'), doi) is None:
+        return True
+    return False
+
+def get_plos_pdf(doi):
+    # Step 1 - find out WHICH plos journal it is
+    get_jcode = re.compile(u'10\.1371/journal\.p(.+)\.')
+    journal_code = re.search(get_jcode, doi)
+    codes = {"pat": "pathogens", "med": "medicine", "gen": "genetics", "one": "one"} # TODO Comp Biol, Trop,Biol, ...
+    raise ValueError("Not implemented")
 
 # List of regexp
-publisher_regex = {"wiley": get_wiley_pdf, "peerj": get_peerj_pdf}
+publisher_regex = {"wiley": get_wiley_pdf, "peerj": get_peerj_pdf, "plos": get_plos_pdf}
 
 # Wrapper to detect the publisher
 def detect_publisher(r):
