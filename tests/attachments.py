@@ -33,11 +33,13 @@ class Attach(unittest.TestCase):
         2. When a second file is attached, it will have a unique name
         3. It works well when adding a third file
         """
-        self.lib.records['poi12a'].attach('tests/tmp/poi12a.pdf')
+        self.lib.get('poi_tii').attach('tests/tmp/poi12a.pdf')
+        self.lib.get('poi_tii').attach('tests/tmp/poi12a_data1.csv')
+        self.lib.get('poi_tii').attach('tests/tmp/poi12a_data2.txt', 'cytflowdata')
+        assert self.lib.get('poi_tii').has_files()
+        print(self.lib.get('poi_tii').content['files'])
         assert os.path.isfile('tests/bib/files/poi12a_1.pdf')
-        self.lib.records['poi12a'].attach('tests/tmp/poi12a_data1.csv')
         assert os.path.isfile('tests/bib/files/poi12a_2.csv')
-        self.lib.records['poi12a'].attach('tests/tmp/poi12a_data2.txt', 'cytflowdata')
         assert os.path.isfile('tests/bib/files/poi12a_cytflowdata.txt')
         os.remove('tests/bib/files/poi12a_1.pdf')
         os.remove('tests/bib/files/poi12a_2.csv')
