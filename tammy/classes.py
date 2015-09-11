@@ -69,7 +69,9 @@ class library:
         records = [f for f in listdir(r_path) if isfile(join(r_path, f))]
         for f in records:
             with open(join(r_path, f), 'r') as r_file:
-                self.new(yaml.load(r_file), False)
+                returned = self.new(yaml.load(r_file), False)
+                if returned+".yaml" != f:
+                    os.rename(join(r_path, f), join(r_path, returned+".yaml"))
         for k, r in self.records.items():
             if not r.changed:
                 r.changed = False
@@ -80,6 +82,7 @@ class library:
     def new(self, content, new = False):
         new_record = record(self, content, new)
         self.records[new_record.key()] = new_record
+        return new_record.key()
     def update(self):
         """ Update the keys in the library dict
 
