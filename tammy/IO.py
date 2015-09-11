@@ -37,8 +37,13 @@ def from_file(path, deserializer='citeproc-json'):
         raise ValueError("tammy cannot read from "+deserializer+" files")
     with open(path, 'r') as libfile:
         if deserializer == "citeproc-json":
-            return json.load(libfile)
+            content = json.load(libfile)
         elif deserializer == "citeproc-yaml":
-            return yaml.load(libfile)
+            content = yaml.load(libfile)
+    # The next line removes the ID if it is already here
+    if 'id' in content:
+        content.pop('id', None)
+    return content
+
 
 serializer = {'citeproc-json': export_citeprocjson, 'citeproc-yaml': export_citeprocyaml}

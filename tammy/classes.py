@@ -54,7 +54,7 @@ class library:
         """
         Method to get a key (since new is now an array)
         """
-        return list(filter(lambda x: x.key() == key, self.records))
+        return list(filter(lambda x: x.key() == key, self.records))[]
     def __str__(self):
         """ String with library infos """
         return "Tammy library with "+str(len(self.keys()))+" records"
@@ -97,20 +97,13 @@ class library:
         folder, and make sure that the linked files are renamed too.
 
         """
-        return True
-        # TODO maybe delete this, since it should not be needed anymore
         for r in self.records:
-            if not k == v.key():
-                self.records[v.key()] = self.records.pop(k)
-                ofile = join(self.config['bib_dir'], 'records', k+'.yaml')
-                nfile = join(self.config['bib_dir'], 'records', v.key()+'.yaml')
-                if isfile(ofile):
-                    os.rename(ofile, nfile)
-                if 'files' in v.content:
-                    for fk, fv in v.content['files'].items():
-                        v.attach(join(self.config['bib_dir'], 'files', fv), title=fk)
+            if r.changed:
+                if r.has_files():
+                    for fk, fv in r.content['files'].items():
+                        r.attach(join(self.config['bib_dir'], 'files', fv), title=fk)
             else :
-                self.records[v.key()].write()
+                r.write()
     def keys(self):
         """
         List of keys

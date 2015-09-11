@@ -22,8 +22,8 @@ class Attach(unittest.TestCase):
         This test checks that
         1. the file is attached
         """
-        self.lib.records['poi12'].attach('tests/tmp/poi12.pdf', 'published')
-        assert self.lib.records['poi12'].has_files()
+        self.lib.get('poi_lsa').attach('tests/tmp/poi12.pdf', 'published')
+        assert self.lib.get('poi_lsa').has_files()
         assert os.path.isfile('tests/bib/files/Poisot_labcspecialisationapparition_poi12_published.pdf')
         self.lib.update()
     def test_3_attach_several(self):
