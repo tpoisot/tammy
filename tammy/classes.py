@@ -47,9 +47,14 @@ class library:
                 os.makedirs(expanduser(self.config[folder]))
             self.config[folder] = expanduser(self.config[folder])
         self.created = datetime.datetime.now()
-        self.records = dict()
+        self.records = []
         self.read(force=True)
         self.update()
+    def get(self, key):
+        """
+        Method to get a key (since new is now an array)
+        """
+        return list(filter(lambda x: x.key() == key, self.records))
     def __str__(self):
         """ String with library infos """
         return "Tammy library with "+str(len(self.keys()))+" records"
@@ -72,16 +77,16 @@ class library:
                 returned = self.new(yaml.load(r_file), False)
                 if returned+".yaml" != f:
                     os.rename(join(r_path, f), join(r_path, returned+".yaml"))
-        for k, r in self.records.items():
+        for r in self.records:
             if not r.changed:
                 r.changed = False
     def write(self, force=False):
-        for k, r in self.records.items():
+        for r in self.records:
             if r.changed or force:
                 r.write()
     def new(self, content, new = False):
         new_record = record(self, content, new)
-        self.records[new_record.key()] = new_record
+        self.records.append(new_record)
         return new_record.key()
     def update(self):
         """ Update the keys in the library dict
@@ -92,7 +97,9 @@ class library:
         folder, and make sure that the linked files are renamed too.
 
         """
-        for k, v in self.records.items():
+        return True
+        # TODO maybe delete this, since it should not be needed anymore
+        for r in self.records:
             if not k == v.key():
                 self.records[v.key()] = self.records.pop(k)
                 ofile = join(self.config['bib_dir'], 'records', k+'.yaml')
@@ -105,19 +112,23 @@ class library:
             else :
                 self.records[v.key()].write()
     def keys(self):
-        return self.records.keys()
+        """
+        List of keys
+        """
+        return list(map(lambda x: x.key(), self.records))
     def export(self, path=None, keys=None, output='citeproc-json'):
         if path == None:
             path = self.config['export_dir']
         path = expanduser(path)
         if not keys == None :
+            # TODO use filter instead
             keys = [k for k in self.keys() if k in keys]
         else :
             keys = self.keys()
         records = []
-        for k ,v in self.records.items():
-            if k in keys:
-                records.append(v.content)
+        for r in self.records:
+            if r.key() in keys:
+                records.append(r.content)
         if not output in serializer.keys():
             raise KeyError("There is no "+output+" serializer at the moment. Write one?")
         serializer[output](records, path)
