@@ -3,6 +3,7 @@ General:
   [ ]  Check @bug when reading an empty file
   [ ]  Empty files when update is interrupted @bug
   [ ]  Ref file not deleted when key is updated @bug
+  [ ]  Use a pickle, only read file if file more recent than pickle @optim
 
 Services:
   [ ]  PeerJ code should also download and attach the PDF
