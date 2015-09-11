@@ -145,7 +145,7 @@ def makefilename(r):
     """
     Make a filename
     """
-    au = AUT(r)
+    au = Author(r)
     ti = title_threewords(r)
     ky = r.content['id']
-    return "_".join(au, ti, ky)
+    return "_".join([au, ti, ky])
