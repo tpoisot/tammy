@@ -5,7 +5,7 @@ from os.path import expanduser
 from os.path import isfile, join, splitext
 import yaml
 
-from .keygen import makeunique
+from .keygen import makeunique, makefilename
 from .cleanup import clean_all
 from .IO import serializer
 
@@ -159,7 +159,7 @@ class record:
             self.content['files'] = dict()
         if title == None :
             title = str(len(self.content['files'])+1)
-        nfile = self.key()+'_'+title+fExt
+        nfile = makefilename(self)+'_'+title+fExt
         os.rename(fpath, join(self.library.config['bib_dir'], 'files', nfile))
         self.content['files'][title] = nfile
         self.write()

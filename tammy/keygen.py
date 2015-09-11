@@ -53,7 +53,6 @@ def makekey(r):
             key.append(element)
     return ''.join(map(str, key))
 
-
 def makeunique(r):
     """ Make a citation key unique
 
@@ -141,3 +140,12 @@ def title_threeletters(r):
     if len(title) > 3:
         title = title[0:3]
     return ''.join(list(map(lambda x: x[0], title)))
+
+def makefilename(r):
+    """
+    Make a filename
+    """
+    au = AUT(r)
+    ti = title_threewords(r)
+    ky = r.content['id']
+    return "_".join(au, ti, ky)
