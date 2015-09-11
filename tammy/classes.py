@@ -4,6 +4,7 @@ from os import listdir
 from os.path import expanduser
 from os.path import isfile, join, splitext
 import yaml
+import pickle
 
 from .keygen import makeunique, makefilename
 from .cleanup import clean_all

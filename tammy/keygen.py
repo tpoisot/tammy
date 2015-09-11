@@ -2,6 +2,7 @@
 
 import string
 import unicodedata
+import re
 
 def clean_str(s):
     """ Clean a string
@@ -19,9 +20,8 @@ def tokenize_string(s):
     swords = ["in", "of", "and", "a", "the", "an", "is", "or", ":", ";", ".", "-", "(", ")", ",", "'"]
     tokens = filter(lambda t: len(t) > 2, map(lambda x: clean_str(x).lower(), s.split(' ')))
     tokens = filter(lambda t: t not in swords, tokens)
-    tokens = map(lambda t: t.translate(None, ";:.-+=()[]{}-'"), tokens)
+    tokens = map(lambda t: re.sub('[!@#$:,;\.\']', '', t), tokens)
     tokens = list(tokens)
-    for
     if len(tokens) == 0:
         tokens = ["x"]
     return tokens
