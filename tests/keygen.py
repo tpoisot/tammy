@@ -21,33 +21,25 @@ class Author(unittest.TestCase):
     @classmethod
     def setUp(self):
         self.lib = tammy.library(cfile=config_file)
-        print(self.lib.keys())
     def test_author_has_shortname(self):
         assert tammy.Author(self.lib.get('li_dmt')) == 'Li'
         assert tammy.Aut(self.lib.get('li_dmt')) == 'Li'
     def test_author_is_consortium(self):
-        assert tammy.Aut(self.lib.records['rde08']) == 'Rde'
+        assert tammy.Aut(self.lib.get('rde_lef')) == 'Rde'
     def test_author_is_editor(self):
-        assert tammy.Aut(self.lib.records['pas06']) == 'Pas'
+        assert tammy.Aut(self.lib.get('pas_enl')) == 'Pas'
     def test_author_has_space(self):
-        assert tammy.Author(self.lib.records['dem00']) == 'Demeeus'
-        assert tammy.Aut(self.lib.records['dem00']) == 'Dem'
+        assert tammy.Author(self.lib.get('dem_ebh')) == 'Demeeus'
+        assert tammy.Aut(self.lib.get('dem_ebh')) == 'Dem'
     def test_anonymous_author(self):
-        assert tammy.Aut(self.lib.records['ano11']) == 'Ano'
+        assert tammy.Aut(self.lib.get('ano_gpa')) == 'Ano'
 
 class Year(unittest.TestCase):
     @classmethod
     def setUp(self):
         self.lib = tammy.library(cfile=config_file)
     def test_Noyear(self):
-        assert tammy.Year(self.lib.get('li_dmt')) == 'xxxx'
-
-class SameNames(unittest.TestCase):
-    @classmethod
-    def setUp(self):
-        self.lib = tammy.library(cfile=config_file)
-    def test_same_names_years(self):
-        assert 'poi12a' in self.lib.keys() and 'poi12' in self.lib.keys()
+        assert tammy.Year(self.lib.get('li_dmt_2')) == 'xxxx'
 
 def main():
     unittest.main(verbosity=2)

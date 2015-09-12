@@ -55,17 +55,14 @@ class b_export(unittest.TestCase):
         with self.assertRaises(KeyError):
             self.lib.export(path='.', keys=None, output='bibtex')
     def test_only_some_keys(self):
-        self.lib.export(keys=["poi12"], output="citeproc-yaml")
+        self.lib.export(keys=["poi_lsa"], output="citeproc-yaml")
         record = tammy.IO.from_file("tests/bib/default.yaml", "citeproc-yaml")
         assert len(record) == 1
-        assert record[0]['id'] == "poi12"
+        assert record[0]['id'] == "poi_lsa"
         os.remove('tests/bib/default.yaml')
 
 def main():
-    if sys.version_info[1] < 7 :
-        unittest.main(verbosity=2)
-    else :
-        unittest.main(verbosity=3)
+    unittest.main(verbosity=3)
 
 if __name__ == '__main__':
     main()

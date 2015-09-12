@@ -5,11 +5,14 @@ General:
   [x]  Ref file not deleted when key is updated @bug @done(2015-09-11 18:36) @project(General)
   [ ]  Use a pickle, only read file if file more recent than pickle @optim
 
+Documentation:
+  [ ]  New interface using `get`
+
 Services:
   [ ]  PeerJ code should also download and attach the PDF
 
 IO:
-  [ ]  Read records from a bibtex file using pandoc @ornot
+  [ ]  Read records from a bibtex file using pandoc-citeproc @ornot
 
 Keys:
 
@@ -19,6 +22,7 @@ Attachments:
 I Can Haz PDF:
   [ ]  PeerJ preprints
   [ ]  PLOS journals
+  [ ]  Science
 
 ---
 Archive:
