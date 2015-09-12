@@ -37,13 +37,15 @@ class Attach(unittest.TestCase):
         self.lib.get('poi_tii').attach('tests/tmp/poi12a_data1.csv')
         self.lib.get('poi_tii').attach('tests/tmp/poi12a_data2.txt', 'cytflowdata')
         assert self.lib.get('poi_tii').has_files()
-        print(self.lib.get('poi_tii').content['files'])
-        assert os.path.isfile('tests/bib/files/poi12a_1.pdf')
-        assert os.path.isfile('tests/bib/files/poi12a_2.csv')
-        assert os.path.isfile('tests/bib/files/poi12a_cytflowdata.txt')
-        os.remove('tests/bib/files/poi12a_1.pdf')
-        os.remove('tests/bib/files/poi12a_2.csv')
-        os.remove('tests/bib/files/poi12a_cytflowdata.txt')
+        f1 = "Poisot_terminalinvestmentinduced_poi_tii_1.pdf"
+        f2 = "Poisot_terminalinvestmentinduced_poi_tii_2.csv"
+        f3 = "Poisot_terminalinvestmentinduced_poi_tii_cytflowdata.txt"
+        assert os.path.isfile('tests/bib/files/'+f1)
+        assert os.path.isfile('tests/bib/files/'+f2)
+        assert os.path.isfile('tests/bib/files/'+f3)
+        os.remove('tests/bib/files/'+f1)
+        os.remove('tests/bib/files/'+f2)
+        os.remove('tests/bib/files/'+f3)
     def test_4_no_file(self):
         with self.assertRaises(ValueError):
             self.lib.records['poi12a'].attach('no/such/file')

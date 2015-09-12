@@ -30,7 +30,7 @@ class library:
                 'key': ["aut", "_", "tl"] # NOTE experimental - specify key format
                 }
         if not cfile:
-        ## Look for a file LOCALLY first, then in home SECOND
+        # Look for a file LOCALLY first, then in home SECOND
             if isfile(expanduser(".tammy.yaml")):
                 cfile = ".tammy.yaml"
             elif isfile(expanduser("~/.tammy.yaml")):
@@ -54,7 +54,7 @@ class library:
         """
         Method to get a key (since new is now an array)
         """
-        return list(filter(lambda x: x.key() == key, self.records))[]
+        return list(filter(lambda x: x.key() == key, self.records))[0]
     def __str__(self):
         """ String with library infos """
         return "Tammy library with "+str(len(self.keys()))+" records"

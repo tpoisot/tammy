@@ -22,7 +22,8 @@ class Wiley(unittest.TestCase):
         This test checks that
         1. the file is attached
         """
-        tammy.icanhazpdf.get_pdf_from_ref(self.lib.records['lio15'])
+        tammy.icanhazpdf.get_pdf_from_ref(self.lib.get('lio_eim'))
+        assert self.lib.get('lio_eim').has_files()
         assert os.path.isfile('tests/bib/files/lio15_maintext.pdf')
 
 class PeerJ(unittest.TestCase):
