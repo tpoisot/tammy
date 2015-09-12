@@ -34,12 +34,12 @@ class Author(unittest.TestCase):
     def test_anonymous_author(self):
         assert tammy.Aut(self.lib.get('ano_gpa')) == 'Ano'
 
-class Year(unittest.TestCase):
-    @classmethod
-    def setUp(self):
-        self.lib = tammy.library(cfile=config_file)
-    def test_Noyear(self):
-        assert tammy.Year(self.lib.get('li_dmt_2')) == 'xxxx'
+#class Year(unittest.TestCase):
+#    @classmethod
+#    def setUp(self):
+#        self.lib = tammy.library(cfile=config_file)
+#    def test_Noyear(self):
+#        assert tammy.Year(self.lib.get('li_dmt_2')) == 'xxxx'
 
 def main():
     unittest.main(verbosity=2)

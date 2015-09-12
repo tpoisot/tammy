@@ -15,6 +15,7 @@ IO:
   [ ]  Read records from a bibtex file using pandoc-citeproc @ornot
 
 Keys:
+  [ ]  Restore @test for missing year
 
 Attachments:
   [ ]  Remove files if they don't exist on the drive anymore

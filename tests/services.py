@@ -30,10 +30,7 @@ class CrossRef(unittest.TestCase):
             tammy.from_crossref_doi('no/no/no')
 
 def main():
-    if sys.version_info[1] < 7 :
-        unittest.main(verbosity=2)
-    else :
-        unittest.main(verbosity=2)
+    unittest.main(verbosity=2)
 
 if __name__ == '__main__':
     main()
