@@ -34,6 +34,10 @@ class Author(unittest.TestCase):
     def test_anonymous_author(self):
         assert tammy.Aut(self.lib.get('ano_gpa')) == 'Ano'
 
+class Tokens(unittest.TestCase):
+    def test_small_string(self):
+        assert tammy.keygen.tokenize_string("ab cd") == "x"
+
 #class Year(unittest.TestCase):
 #    @classmethod
 #    def setUp(self):

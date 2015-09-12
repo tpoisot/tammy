@@ -60,6 +60,12 @@ class b_export(unittest.TestCase):
         assert len(record) == 1
         assert record[0]['id'] == "poi_lsa"
         os.remove('tests/bib/default.yaml')
+    def test_json(self):
+        self.lib.export(keys=["poi_lsa"], output="citeproc-json")
+        record = tammy.IO.from_file("tests/bib/default.json", "citeproc-json")
+        assert len(record) == 1
+        assert record[0]['id'] == "poi_lsa"
+        os.remove('tests/bib/default.json')
 
 def main():
     unittest.main(verbosity=3)
