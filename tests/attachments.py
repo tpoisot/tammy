@@ -24,7 +24,7 @@ class Attach(unittest.TestCase):
         """
         self.lib.get('poi_lsa').attach('tests/tmp/poi12.pdf', 'published')
         assert self.lib.get('poi_lsa').has_files()
-        assert os.path.isfile('tests/bib/files/Poisot_labcspecialisationapparition_poi12_published.pdf')
+        assert os.path.isfile('tests/bib/files/Poisot_labcspecialisationapparition_poi_wen_published.pdf')
         self.lib.update()
     def test_3_attach_several(self):
         """

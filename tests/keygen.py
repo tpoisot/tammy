@@ -21,7 +21,7 @@ class Author(unittest.TestCase):
     @classmethod
     def setUp(self):
         self.lib = tammy.library(cfile=config_file)
-        print self.lib.keys()
+        print(self.lib.keys())
     def test_author_has_shortname(self):
         assert tammy.Author(self.lib.get('li_dmt')) == 'Li'
         assert tammy.Aut(self.lib.get('li_dmt')) == 'Li'
