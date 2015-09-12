@@ -4,6 +4,7 @@ General:
   [ ]  Empty files when update is interrupted @bug
   [x]  Ref file not deleted when key is updated @bug @done(2015-09-11 18:36) @project(General)
   [ ]  Use a pickle, only read file if file more recent than pickle @optim
+  [ ]  Define customized errors (`DOIError`, ...) @longterm
 
 Documentation:
   [ ]  New interface using `get`

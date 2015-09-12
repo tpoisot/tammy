@@ -13,6 +13,16 @@ config_file = os.path.join(os.path.dirname(__file__), 'tammy.yaml')
 
 import tammy
 
+class General(unittest.TestCase):
+    @classmethod
+    def setUp(self):
+        self.lib = tammy.library(cfile=config_file)
+    def test_no_doi(self):
+        """
+        If a reference has no DOI, there should be a Key Error
+        """
+        self.assertRaises(KeyError, lambda x: tammy.icanhazpdf.get_pdf_from_ref(self.lib.get(x)), 'rde_lef')
+
 class Wiley(unittest.TestCase):
     @classmethod
     def setUp(self):

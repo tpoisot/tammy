@@ -36,7 +36,7 @@ class Author(unittest.TestCase):
 
 class Tokens(unittest.TestCase):
     def test_small_string(self):
-        assert tammy.keygen.tokenize_string("ab cd") == "x"
+        assert tammy.keygen.tokenize_string("ab cd")[0] == "x"
 
 #class Year(unittest.TestCase):
 #    @classmethod
