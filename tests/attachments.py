@@ -48,13 +48,10 @@ class Attach(unittest.TestCase):
         os.remove('tests/bib/files/'+f3)
     def test_4_no_file(self):
         with self.assertRaises(ValueError):
-            self.lib.records['poi12a'].attach('no/such/file')
+            self.lib.get('poi_lsa').attach('no/such/file')
 
 def main():
-    if sys.version_info[1] < 7 :
-        unittest.main(verbosity=2)
-    else :
-        unittest.main(verbosity=2)
+    unittest.main(verbosity=2)
 
 if __name__ == '__main__':
     main()

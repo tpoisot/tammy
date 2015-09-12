@@ -24,6 +24,7 @@ class Wiley(unittest.TestCase):
         """
         tammy.icanhazpdf.get_pdf_from_ref(self.lib.get('lio_eim'))
         assert self.lib.get('lio_eim').has_files()
+        print(self.lib.get('lio_eim').content['files'])
         assert os.path.isfile('tests/bib/files/lio15_maintext.pdf')
 
 class PeerJ(unittest.TestCase):
@@ -33,15 +34,13 @@ class PeerJ(unittest.TestCase):
     def test_attach_peerj_pdf(self):
         record = tammy.from_peerj(251, 'article')
         self.lib.new(record)
-        tammy.icanhazpdf.get_pdf_from_ref(self.lib.records['poi_wen'])
+        tammy.icanhazpdf.get_pdf_from_ref(self.lib.get('poi_wen'))
+        print(self.lib.get('poi_wen').content['files'])
         assert os.path.isfile('tests/bib/files/poi_wen_maintext.pdf')
 
 
 def main():
-    if sys.version_info[1] < 7 :
-        unittest.main(verbosity=2)
-    else :
-        unittest.main(verbosity=2)
+    unittest.main(verbosity=2)
 
 if __name__ == '__main__':
     main()
