@@ -50,7 +50,14 @@ def get_plos_pdf(doi):
     get_jcode = re.compile(u'10\.1371/journal\.p(.+)\.')
     journal_code = re.search(get_jcode, doi)
     codes = {"pat": "pathogens", "med": "medicine", "gen": "genetics", "one": "one"} # TODO Comp Biol, Trop,Biol, ...
-    raise ValueError("Not implemented")
+    # Check that the journal is handled
+    if journal_code in codes:
+        jname = codes[journal_code]
+    else:
+        raise KeyError("PLOS journal currently  not handled")
+    # Build the PDF URL
+    _url = "http://www.plos" + jname + ".org/article/fetchObject.action?uri=info:doi/" + doi + "&representation=PDF
+    return _url
 
 # List of regexp
 publisher_regex = {"wiley": get_wiley_pdf, "peerj": get_peerj_pdf, "plos": get_plos_pdf}
@@ -62,6 +69,8 @@ def detect_publisher(r):
         return "peerj"
     if is_it_wiley(r.content["DOI"]):
         return "wiley"
+    if is_it_plos(r.content["DOI"]):
+        return "plos"
     raise ValueError("I cannot find the publisher from the DOI")
 
 def get_pdf_from_ref(r):

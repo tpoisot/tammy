@@ -46,6 +46,15 @@ class PeerJ(unittest.TestCase):
         tammy.icanhazpdf.get_pdf_from_ref(self.lib.get('poi_wen'))
         assert os.path.isfile('tests/bib/files/Poisot_whenecologicalnetwork_poi_wen_maintext.pdf')
 
+class PLOS(unittest.TestCase):
+    @classmethod
+    def setUp(self):
+        self.lib = tammy.library(cfile=config_file)
+    def test_attach_plos_pdf(self):
+        record = tammy.from_crossref_doi("10.1371/journal.ppat.1005137")
+        self.lib.new(record)
+        tammy.icanhazpdf.get_pdf_from_ref(self.lib.get('lyn_rld'))
+        print(self.lib.get('lyn_rld').content['files'])
 
 def main():
     unittest.main(verbosity=2)
