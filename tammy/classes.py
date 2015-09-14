@@ -3,6 +3,7 @@ import os
 from os import listdir
 from os.path import expanduser
 from os.path import isfile, join, splitext
+import json
 import yaml
 import pickle
 
@@ -96,8 +97,8 @@ class library:
         for f in records:
             with open(join(r_path, f), 'r') as r_file:
                 returned = self.new(yaml.load(r_file), False)
-                if returned+".yaml" != f:
-                    os.rename(join(r_path, f), join(r_path, returned+".yaml"))
+                if returned+".json" != f:
+                    os.rename(join(r_path, f), join(r_path, returned+".json"))
         for r in self.records:
             if not r.changed:
                 r.changed = False
@@ -199,15 +200,16 @@ class record:
 
         This will write the content of the record in the ``records``
         folder of the ``bib_dir`` folder. The filename is the unique record
-        key and the ``.yaml`` extension.
+        key and the ``.json`` extension.
 
         This method is usually called by ``library.write()``, but it can be
         used to update the content of any file.
 
         """
-        path = self.library.config['bib_dir']+'records/'+self.key()+'.yaml'
+        path = self.library.config['bib_dir']+'records/'+self.key()+'.json'
         with open(path, 'w') as outfile:
-            outfile.write(yaml.safe_dump(self.content))
+            json.dump(self.content, outfile, sort_keys=True, indent=4, separators=(',', ': '))
+            #outfile.write(yaml.safe_dump(self.content))
         self.changed = False
     def has_doi(self):
         return "DOI" in self.content

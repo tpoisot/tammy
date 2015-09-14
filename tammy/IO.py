@@ -7,7 +7,7 @@ def export_citeprocjson(records, path):
     """ Export records to JSON
     """
     with open(join(path, 'default.json'), 'w') as libfile:
-        json.dump(records, libfile)
+        json.dump(records, libfile, sort_keys=True, indent=4, separators=(',', ': '))
 
 def export_citeprocyaml(records, path):
     """ Export records to YAML
