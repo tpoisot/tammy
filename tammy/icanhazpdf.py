@@ -56,7 +56,7 @@ def get_plos_pdf(doi):
     else:
         raise KeyError("PLOS journal currently  not handled")
     # Build the PDF URL
-    _url = "http://www.plos" + jname + ".org/article/fetchObject.action?uri=info:doi/" + doi + "&representation=PDF
+    _url = "http://www.plos" + jname + ".org/article/fetchObject.action?uri=info:doi/" + doi + "&representation=PDF"
     return _url
 
 # List of regexp
