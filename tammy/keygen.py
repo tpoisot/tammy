@@ -35,7 +35,7 @@ def makekey(r):
         "aut": lambda x: Aut(x).lower(),
         "Aut": lambda x: Aut(x),
         "AUT": lambda x: Aut(x).upper(),
-        "author": lambda x: Author().lower(),
+        "author": lambda x: Author(x).lower(),
         "Author": lambda x: Author(x),
         "AUTHOR": lambda x: Author(x).upper(),
         # Years
