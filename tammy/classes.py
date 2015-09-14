@@ -48,8 +48,29 @@ class library:
             self.config[folder] = expanduser(self.config[folder])
         self.created = datetime.datetime.now()
         self.records = []
-        self.read(force=True)
-        self.update()
+        self.pickle = expanduser(self.config[folder])+"tammy.pickle"
+        self.pickletimestamp = 0
+        self.filetimestamp = 0
+        if isfile(self.pickle):
+            self.pickletimestamp = os.stat(self.pickle).st_mtime
+            # Compare to the file timestamps
+            r_path = join(self.config['bib_dir'], 'records')
+            records = [f for f in listdir(r_path) if isfile(join(r_path, f))]
+            for f in records:
+                if os.stat(join(r_path, f)).st_mtime > self.filetimestamp:
+                    self.filetimestamp = os.stat(join(r_path, f)).st_mtime
+            if self.filetimestamp > self.pickletimestamp:
+                self.read(force=True)
+                self.update()
+            else:
+                with open(self.pickle, 'rb') as f:
+                    self.records = pickle.load(f)
+        else:
+            self.read(force=True)
+            self.update()
+
+        # if os.stat(join(r_path, f)).st_mtime > self.recentfiletime:
+        #    self.recentfiletime = os.stat(join(r_path, f)).st_mtime
     def get(self, key):
         """
         Method to get a key (since new is now an array)
@@ -102,8 +123,12 @@ class library:
                 if r.has_files():
                     for fk, fv in r.content['files'].items():
                         r.attach(join(self.config['bib_dir'], 'files', fv), title=fk)
+                r.write()
             else :
                 r.write()
+        with open(self.pickle, 'wb') as f:
+            # Pickle the 'data' dictionary using the highest protocol available.
+            pickle.dump(self.records, f, pickle.HIGHEST_PROTOCOL)
     def keys(self):
         """
         List of keys

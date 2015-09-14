@@ -2,7 +2,6 @@ General:
   [ ]  validate content https://raw.githubusercontent.com/citation-style-language/schema/master/csl-data.json @jsonschema
   [ ]  Check @bug when reading an empty file
   [ ]  Empty files when update is interrupted @bug
-  [ ]  Use a pickle, only read file if file more recent than pickle @optim
   [ ]  Define customized errors (`DOIError`, ...) @longterm
 
 Documentation:
@@ -27,6 +26,7 @@ I Can Haz PDF:
 
 ---
 Archive:
+  [x]  Use a pickle, only read file if file more recent than pickle @optim @done(2015-09-13 23:32) @project(General)
   [x]  Ref file not deleted when key is updated @bug @done(2015-09-11 18:36) @project(General)
   [x]  Have a saner scheme for attachments. AUT/author_journal_title_key_type.pdf ? @done(2015-09-11 16:17) @project(Attachments)
   [x]  PeerJ @done(2015-09-10 21:45) @project(I Can Haz PDF)
