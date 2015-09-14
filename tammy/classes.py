@@ -124,8 +124,6 @@ class library:
                     for fk, fv in r.content['files'].items():
                         r.attach(join(self.config['bib_dir'], 'files', fv), title=fk)
                 r.write()
-            else :
-                r.write()
         with open(self.pickle, 'wb') as f:
             # Pickle the 'data' dictionary using the highest protocol available.
             pickle.dump(self.records, f, pickle.HIGHEST_PROTOCOL)
