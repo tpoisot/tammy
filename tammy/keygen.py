@@ -20,7 +20,7 @@ def tokenize_string(s):
     swords = ["in", "of", "and", "a", "the", "an", "is", "or", ":", ";", ".", "-", "(", ")", ",", "'"]
     tokens = filter(lambda t: len(t) > 2, map(lambda x: clean_str(x).lower(), s.split(' ')))
     tokens = filter(lambda t: t not in swords, tokens)
-    tokens = map(lambda t: re.sub('[!@#$:,;\.\']', '', t), tokens)
+    tokens = map(lambda t: re.sub('[\W]', '', t), tokens)
     tokens = list(tokens)
     if len(tokens) == 0:
         tokens = ["x"]
