@@ -49,7 +49,11 @@ def get_plos_pdf(doi):
     # Step 1 - find out WHICH plos journal it is
     get_jcode = re.compile(u'10\.1371/journal\.p(.+)\.')
     journal_code = re.search(get_jcode, doi)
-    codes = {"pat": "pathogens", "med": "medicine", "gen": "genetics", "one": "one"} # TODO Comp Biol, Trop,Biol, ...
+    codes = {"pat": "pathogens",
+            "med": "medicine",
+            "gen": "genetics",
+            "one": "one",
+            "cbi": "compbiol"} # TODO Trop,Biol, ...
     # Check that the journal is handled
     if journal_code in codes:
         jname = codes[journal_code]

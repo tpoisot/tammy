@@ -149,4 +149,4 @@ def makefilename(r):
     au = Author(r)
     ti = title_threewords(r)
     ky = r.content['id']
-    return "_".join([au, ti, ky])
+    return ky
