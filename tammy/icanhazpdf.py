@@ -48,7 +48,8 @@ def is_it_plos(doi):
 def get_plos_pdf(doi):
     # Step 1 - find out WHICH plos journal it is
     get_jcode = re.compile(u'10\.1371/journal\.p(.+)\.')
-    journal_code = re.search(get_jcode, doi)
+    # Search, and return the matching part of the DOI
+    journal_code = re.search(get_jcode, doi).group(1)
     codes = {"pat": "pathogens",
             "med": "medicine",
             "gen": "genetics",
