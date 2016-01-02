@@ -34,7 +34,7 @@ class Wiley(unittest.TestCase):
         """
         tammy.icanhazpdf.get_pdf_from_ref(self.lib.get('lio_eim'))
         assert self.lib.get('lio_eim').has_files()
-        assert os.path.isfile('tests/bib/files/Liow_ecologicalinteractionsmacroevolutionary_lio_eim_maintext.pdf')
+        assert os.path.isfile('tests/bib/files/lio_eim_maintext.pdf')
 
 class PeerJ(unittest.TestCase):
     @classmethod
@@ -44,7 +44,7 @@ class PeerJ(unittest.TestCase):
         record = tammy.from_peerj(251, 'article')
         self.lib.new(record)
         tammy.icanhazpdf.get_pdf_from_ref(self.lib.get('poi_wen'))
-        assert os.path.isfile('tests/bib/files/Poisot_whenecologicalnetwork_poi_wen_maintext.pdf')
+        assert os.path.isfile('tests/bib/files/poi_wen_maintext.pdf')
 
 class PLOS(unittest.TestCase):
     @classmethod

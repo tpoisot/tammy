@@ -76,9 +76,14 @@ def get_plos_pdf(doi):
     return _url
 
 # List of regexp
-publisher_regex = {"wiley": get_wiley_pdf, "peerj": get_peerj_pdf, "plos": get_plos_pdf}
+publisher_regex = {
+        "wiley": get_wiley_pdf,
+        "peerj": get_peerj_pdf,
+        "plos": get_plos_pdf,
+        "roysoc": get_roysoc_pdf}
 
 # Wrapper to detect the publisher
+# TODO MAKE IT BETTER -- e.g. return a tuple (doi, func)
 def detect_publisher(r):
     # NOTE This is fugly
     if is_it_peerj(r.content["DOI"]):
@@ -87,6 +92,8 @@ def detect_publisher(r):
         return "wiley"
     if is_it_plos(r.content["DOI"]):
         return "plos"
+    if is_it_roysoc(r.content["DOI"]):
+        return "roysoc"
     raise ValueError("I cannot find the publisher from the DOI")
 
 def get_pdf_from_ref(r):
