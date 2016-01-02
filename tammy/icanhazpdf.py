@@ -99,6 +99,7 @@ def detect_publisher(r):
 def get_pdf_from_ref(r):
     if "DOI" not in r.content:
         # TODO use the `publisher` key
+        # TODO use crossref API (and update reference?)
         raise KeyError("ICanHazPDF module needs a DOI")
     doi = r.content["DOI"]
     publisher = detect_publisher(r)
