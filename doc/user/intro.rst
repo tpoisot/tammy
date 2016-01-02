@@ -52,5 +52,12 @@ identifier, etc, is useful, so I am building a set of functions to do
 that. Also, if journals expose their papers in citeproc-JSON (as *PeerJ*
 does), it's easy to write a function for integration.
 
+ICanHazPDF, YouCanHazPDF, EVERYONECanHazPDF
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``tammy`` has *literaly* a ``ICanHazPDF`` module. It looks at the DOI
+(currently, other means to do lookup coming soon), and then will use a lot
+of requests, regex, and web parsing to get you the PDF if you have access.
+
 With all these informations in hand, if you think ``tammy`` is right for you,
 read on!

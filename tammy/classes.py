@@ -81,7 +81,7 @@ class library:
         """ String with library infos """
         return "Tammy library with "+str(len(self.keys()))+" records"
     def read(self, force=False):
-        """Read the yaml files from the references folder
+        """Read the json files from the references folder
 
         This method is called when the ``library`` class is instantiated,
         and it ensures that all records are loaded. Because it calls the
