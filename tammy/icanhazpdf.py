@@ -5,6 +5,22 @@ import urllib.request
 
 # List of publisher-specific code
 
+def is_it_elsevier(doi):
+    if not re.search(re.compile(u"10\.1016"), doi) is None:
+        return True
+    return False
+
+def get_elsevier_pdf(doi):
+    getpdf = re.compile(u'id="pdflink" src="(.+main.+)" query')
+    _doi_url = "http://dx.doi.org/" + doi
+    _url = requests.get(_doi_url).url
+    _url_html_content = requests.get(_url).text
+    search_result = re.search(getpdf, _url_html_content)
+    if not search_result == None:
+        return search_result.group(1)
+    else:
+        raise ValueError("No PDF (or unable to access)")
+
 def is_it_roysoc(doi):
     if not re.search(re.compile(u"10\.1098/r"), doi) is None:
         return True
@@ -14,6 +30,7 @@ def get_roysoc_pdf(doi):
     _url = "http://onlinelibrary.wiley.com/doi/" + doi + "/pdf"
     _url_doi = "http://dx.doi.org/" + doi
     _url = requests.get(_url_doi).url
+    # TODO what it not found?
     return _url + ".full-text.pdf"
 
 def is_it_wiley(doi):
@@ -80,7 +97,8 @@ publisher_regex = {
         "wiley": get_wiley_pdf,
         "peerj": get_peerj_pdf,
         "plos": get_plos_pdf,
-        "roysoc": get_roysoc_pdf}
+        "roysoc": get_roysoc_pdf,
+        "elsevier": get_elsevier_pdf}
 
 # Wrapper to detect the publisher
 # TODO MAKE IT BETTER -- e.g. return a tuple (doi, func)
@@ -90,6 +108,8 @@ def detect_publisher(r):
         return "peerj"
     if is_it_wiley(r.content["DOI"]):
         return "wiley"
+    if is_it_elsevier(r.content["DOI"]):
+        return "elsevier"
     if is_it_plos(r.content["DOI"]):
         return "plos"
     if is_it_roysoc(r.content["DOI"]):
