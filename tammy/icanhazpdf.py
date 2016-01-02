@@ -5,6 +5,17 @@ import urllib.request
 
 # List of publisher-specific code
 
+def is_it_roysoc(doi):
+    if not re.search(re.compile(u"10\.1098/r"), doi) is None:
+        return True
+    return False
+
+def get_roysoc_pdf(doi):
+    _url = "http://onlinelibrary.wiley.com/doi/" + doi + "/pdf"
+    _url_doi = "http://dx.doi.org/" + doi
+    _url = requests.get(_url_doi).url
+    return _url + ".full-text.pdf"
+
 def is_it_wiley(doi):
     if not re.search(re.compile(u"10\.1111"), doi) is None:
         return True
