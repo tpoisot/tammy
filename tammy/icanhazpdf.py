@@ -11,13 +11,25 @@ def is_it_elsevier(doi):
     return False
 
 def get_elsevier_pdf(doi):
-    getpdf = re.compile(u'id="pdflink" src="(.+main.+)" query')
+    # NOTE ScienceDirect and CellPress have to be handled differently
     _doi_url = "http://dx.doi.org/" + doi
     _url = requests.get(_doi_url).url
-    _url_html_content = requests.get(_url).text
-    search_result = re.search(getpdf, _url_html_content)
+    if not re.search(re.compile("sciencedirect"), _url) is None:
+        # NOTE this is for science direct
+        getpdf = re.compile(u'pdfurl="(.+pdf)"')
+        _url_html_content = requests.get(_url).text
+        search_result = re.search(getpdf, _url_html_content)
+        if not search_result == None:
+            pdf_url = search_result.group(1)
+    if not re.search(re.compile("cell\.com"), _url) is None:
+        # NOTE Cell Press
+        getpdf = re.compile(u'href="(.+pdf.+)" onclick')
+        _url_html_content = requests.get(_url).text
+        search_result = re.search(getpdf, _url_html_content)
+        if not search_result == None:
+            pdf_url = "http://www.cell.com" + search_result.group(1)
     if not search_result == None:
-        return search_result.group(1)
+        return pdf_url
     else:
         raise ValueError("No PDF (or unable to access)")
 
@@ -30,7 +42,7 @@ def get_roysoc_pdf(doi):
     _url = "http://onlinelibrary.wiley.com/doi/" + doi + "/pdf"
     _url_doi = "http://dx.doi.org/" + doi
     _url = requests.get(_url_doi).url
-    # TODO what it not found?
+    # TODO what if not found?
     return _url + ".full-text.pdf"
 
 def is_it_wiley(doi):
