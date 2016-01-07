@@ -4,7 +4,7 @@ def clean_all(record):
     conditions to catch all errors I have noticed.
     """
     record = clean_fields(record)
-    for arrayed in ['ISSN']:
+    for arrayed in ['ISSN', 'ISBN']:
         if arrayed in record:
             record = clean_arrayed(record, arrayed)
     return record
@@ -14,6 +14,8 @@ def clean_fields(record):
     """
     if record['type'] == 'journal-article':
         record['type'] = 'article-journal'
+    if record['type'] == 'proceedings-article':
+        record['type'] = 'paper-conference'
     return record
 
 def clean_arrayed(record, field):
