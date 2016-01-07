@@ -12,10 +12,17 @@ def clean_all(record):
 def clean_fields(record):
     """ Clean the fields
     """
+    # Record types
     if record['type'] == 'journal-article':
         record['type'] = 'article-journal'
     if record['type'] == 'proceedings-article':
         record['type'] = 'paper-conference'
+    # Empty affiliations
+    if "author" in record:
+        for auth in record["author"]:
+            if "affiliation" in auth:
+                if len(auth["affiliation"]) == 0:
+                    auth.pop("affiliation", None)
     return record
 
 def clean_arrayed(record, field):
