@@ -145,7 +145,7 @@ class library:
         records = []
         for r in self.records:
             if r.key() in keys:
-                records.append(tammy.cleanup.clean_all(r.content))
+                records.append(clean_all(r.content))
         if not output in serializer.keys():
             raise KeyError("There is no "+output+" serializer at the moment. Write one?")
         serializer[output](records, path)
