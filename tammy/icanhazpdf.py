@@ -120,8 +120,8 @@ def detect_publisher(r):
         return "peerj"
     if is_it_wiley(r.content["DOI"]):
         return "wiley"
-    if is_it_elsevier(r.content["DOI"]):
-        return "elsevier"
+    # if is_it_elsevier(r.content["DOI"]):
+        # return "elsevier"
     if is_it_plos(r.content["DOI"]):
         return "plos"
     if is_it_roysoc(r.content["DOI"]):
