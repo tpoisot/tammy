@@ -19,12 +19,18 @@ class acol:
 def get_scihub_pdf(doi):
     _root = random.choice(["sci-hub.io", "sci-hub.cc"])
     _doi_url = "http://" + _root +  "/" + doi
+    print("\t" + acol.MAGENTA + "SciHub:\t" + acol.END + _doi_url + acol.END) 
     getpdf = re.compile(u'<iframe src = "(.+\.pdf)">')
     try :
         _url = _doi_url
+        _redirect_url = requests.get(_url).url
+        if not _root in _redirect_url :
+            raise ValueError("Redirected")
+        _url = _redirect_url
         _url_html_content = requests.get(_url).text
         search_result = re.search(getpdf, _url_html_content)
         if not search_result == None:
+            print("\t" + acol.BLUE + "PDF at:\t" + acol.END + search_result.group(1) + acol.END) 
             return search_result.group(1)
         else:
             raise ValueError("Unable to read PDF")
@@ -184,8 +190,7 @@ def get_pdf_from_ref(r):
     print("\nTrying " + acol.BOLD + acol.GREEN + r.key() + acol.END) 
     try :
         print("\t" + acol.CYAN + "Looking on Sci-Hub." + acol.END) 
-        # _url = get_scihub_pdf(doi)
-        raise Exception("Nope")
+        _url = get_scihub_pdf(doi)
     except :
         print("\t" + acol.RED + "PDF not found on Sci-Hub, looking for publisher." + acol.END) 
         publisher = detect_publisher(r)
