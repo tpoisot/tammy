@@ -111,6 +111,8 @@ def get_plos_pdf(doi):
             "med": "medicine",
             "gen": "genetics",
             "one": "one",
+            "ntd": "ntds",
+            "bio": "biology",
             "cbi": "compbiol"} # TODO Trop,Biol, ...
     # Check that the journal is handled
     if journal_code in codes:
@@ -168,7 +170,8 @@ def get_pdf_from_ref(r):
     _url = None
     try :
         _url = get_scihub_pdf(doi)
-    except :
+    except Exception as exc:
+        print(exc)
         publisher = detect_publisher(r)
         _url = publisher_regex[publisher](doi)
     if not _url == None:
