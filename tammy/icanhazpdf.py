@@ -2,10 +2,12 @@ import re
 import requests
 import tempfile
 import urllib.request
+import random
 
 # Thanks SciHub!
 def get_scihub_pdf(doi):
-    _doi_url = "http://sci-hub.io/" + doi
+    _root = random.choice("sci-hub.io", "sci-hub.cc"])
+    _doi_url = "http://" + _root +  "/" + doi
     getpdf = re.compile(u'<iframe src = "(.+\.pdf)">')
     try :
         _url = _doi_url
@@ -114,7 +116,7 @@ def get_plos_pdf(doi):
     if journal_code in codes:
         jname = codes[journal_code]
     else:
-        raise KeyError("PLOS journal currently  not handled")
+        raise KeyError("PLOS journal (" + journal_code +  ") currently  not handled")
     # Build the PDF URL
     _url = "http://www.plos" + jname + ".org/article/fetchObject.action?uri=info:doi/" + doi + "&representation=PDF"
     return _url
