@@ -6,7 +6,7 @@ import random
 
 # Thanks SciHub!
 def get_scihub_pdf(doi):
-    _root = random.choice("sci-hub.io", "sci-hub.cc"])
+    _root = random.choice(["sci-hub.io", "sci-hub.cc"])
     _doi_url = "http://" + _root +  "/" + doi
     getpdf = re.compile(u'<iframe src = "(.+\.pdf)">')
     try :
@@ -151,8 +151,8 @@ def detect_publisher(r):
         return "peerj"
     if is_it_wiley(r.content["DOI"]):
         return "wiley"
-    # if is_it_elsevier(r.content["DOI"]):
-        # return "elsevier"
+    if is_it_elsevier(r.content["DOI"]):
+        return "elsevier"
     if is_it_plos(r.content["DOI"]):
         return "plos"
     if is_it_roysoc(r.content["DOI"]):
@@ -181,3 +181,5 @@ def get_pdf_from_ref(r):
             r.library.update()
         else:
             raise ValueError("CAPTCHA'ed")
+    else:
+        raise ValueError("No PDF")
