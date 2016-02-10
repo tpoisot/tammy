@@ -3,6 +3,21 @@ import requests
 import tempfile
 import urllib.request
 
+# Thanks SciHub!
+def get_scihub_pdf(doi):
+    _doi_url = "http://sci-hub.io/" + doi
+    getpdf = re.compile(u'<iframe src = "(.+\.pdf)">')
+    try :
+        _url = requests.get(_doi_url).url
+        _url_html_content = requests.get(_url).text
+        search_result = re.search(getpdf, _url_html_content)
+        if not search_result == None:
+            return search_result.group(1)
+        else:
+            raise ValueError("Unable to read PDF")
+    except :
+        raise ValueError("No PDF known to SciHub")
+
 # List of publisher-specific code
 
 def is_it_elsevier(doi):
@@ -134,9 +149,14 @@ def get_pdf_from_ref(r):
         # TODO use crossref API (and update reference?)
         raise KeyError("ICanHazPDF module needs a DOI")
     doi = r.content["DOI"]
-    publisher = detect_publisher(r)
-    _fname = '.'.join(doi.split('/'))+".pdf"
-    _url = publisher_regex[publisher](doi)
-    urllib.request.urlretrieve(_url, filename=_fname)
-    r.attach(_fname, "maintext")
-    r.library.update()
+    _url = None
+    try :
+        _url = get_scihub(doi)
+    except :
+        publisher = detect_publisher(r)
+        _url = publisher_regex[publisher](doi)
+    if not _url == None:
+        _fname = '.'.join(doi.split('/'))+".pdf"
+        urllib.request.urlretrieve(_url, filename=_fname)
+        r.attach(_fname, "maintext")
+        r.library.update()
