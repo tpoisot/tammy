@@ -172,6 +172,10 @@ def get_pdf_from_ref(r):
     if not _url == None:
         _fname = '.'.join(doi.split('/'))+".pdf"
         download_file(_url, _fname)
+        # Sci Hub might ask captcha
+        if not 'captcha' in open(_fname).read():
         # urllib.request.urlretrieve(_url, filename=_fname, headers=header)
-        r.attach(_fname, "maintext")
-        r.library.update()
+            r.attach(_fname, "maintext")
+            r.library.update()
+        else:
+            raise ValueError("CAPTCHA'ed")
