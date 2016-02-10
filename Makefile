@@ -2,6 +2,7 @@ python3 = python3
 pip3 = $(python3) -m pip
 req = requirements.txt
 
+
 dependencies:
 	$(pip3) install -r $(req)
 
