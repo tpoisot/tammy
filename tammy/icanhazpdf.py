@@ -8,7 +8,7 @@ def get_scihub_pdf(doi):
     _doi_url = "http://sci-hub.io/" + doi
     getpdf = re.compile(u'<iframe src = "(.+\.pdf)">')
     try :
-        _url = requests.get(_doi_url).url
+        _url = _doi_url
         _url_html_content = requests.get(_url).text
         search_result = re.search(getpdf, _url_html_content)
         if not search_result == None:
@@ -127,6 +127,20 @@ publisher_regex = {
         "roysoc": get_roysoc_pdf,
         "elsevier": get_elsevier_pdf}
 
+
+"""
+Download the file itself
+"""
+def download_file(url, fname):
+    # Look ma, I'm a browser! Fuck you, publishers.
+    header = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0',}
+    r = requests.get(url, stream=True, headers=header)
+    with open(fname, 'wb') as f:
+        for chunk in r.iter_content(chunk_size=1024): 
+            if chunk:
+                f.write(chunk)
+    return fname
+
 # Wrapper to detect the publisher
 # TODO MAKE IT BETTER -- e.g. return a tuple (doi, func)
 def detect_publisher(r):
@@ -151,12 +165,13 @@ def get_pdf_from_ref(r):
     doi = r.content["DOI"]
     _url = None
     try :
-        _url = get_scihub(doi)
+        _url = get_scihub_pdf(doi)
     except :
         publisher = detect_publisher(r)
         _url = publisher_regex[publisher](doi)
     if not _url == None:
         _fname = '.'.join(doi.split('/'))+".pdf"
-        urllib.request.urlretrieve(_url, filename=_fname)
+        download_file(_url, _fname)
+        # urllib.request.urlretrieve(_url, filename=_fname, headers=header)
         r.attach(_fname, "maintext")
         r.library.update()
