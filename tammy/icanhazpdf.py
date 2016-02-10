@@ -4,6 +4,17 @@ import tempfile
 import urllib.request
 import random
 
+# ASCII colors
+class acol:
+    END = '\033[0m'
+    BOLD = '\033[1m'
+    RED = '\033[91m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    MAGENTA = '\033[95m'
+    CYAN = '\033[96m'
+
 # Thanks SciHub!
 def get_scihub_pdf(doi):
     _root = random.choice(["sci-hub.io", "sci-hub.cc"])
@@ -31,6 +42,7 @@ def get_elsevier_pdf(doi):
     # NOTE ScienceDirect and CellPress have to be handled differently
     _doi_url = "http://dx.doi.org/" + doi
     _url = requests.get(_doi_url).url
+    search_result = None
     if not re.search(re.compile("sciencedirect"), _url) is None:
         # NOTE this is for science direct
         getpdf = re.compile(u'pdfurl="(.+pdf)"')
@@ -159,6 +171,7 @@ def detect_publisher(r):
         return "plos"
     if is_it_roysoc(r.content["DOI"]):
         return "roysoc"
+    print("\t" + acol.RED + "No publisher detected from DOI. " + acol.END) 
     raise ValueError("I cannot find the publisher from the DOI")
 
 def get_pdf_from_ref(r):
@@ -168,21 +181,33 @@ def get_pdf_from_ref(r):
         raise KeyError("ICanHazPDF module needs a DOI")
     doi = r.content["DOI"]
     _url = None
+    print("\nTrying " + acol.BOLD + acol.GREEN + r.key() + acol.END) 
     try :
-        _url = get_scihub_pdf(doi)
-    except Exception as exc:
-        print(exc)
+        print("\t" + acol.CYAN + "Looking on Sci-Hub." + acol.END) 
+        # _url = get_scihub_pdf(doi)
+        raise Exception("Nope")
+    except :
+        print("\t" + acol.RED + "PDF not found on Sci-Hub, looking for publisher." + acol.END) 
         publisher = detect_publisher(r)
+        print("\t" + acol.BLUE + "Publisher: " + acol.END + "\t" + publisher) 
         _url = publisher_regex[publisher](doi)
     if not _url == None:
+        print("\t" + acol.YELLOW + "PDF URL:\t" + acol.END + _url) 
         _fname = '.'.join(doi.split('/'))+".pdf"
         download_file(_url, _fname)
         # Sci Hub might ask captcha
-        if not 'captcha' in open(_fname).read():
-        # urllib.request.urlretrieve(_url, filename=_fname, headers=header)
+        # This next part is flaky as shit
+        try :
+            open(_fname).read()
+            if not 'captcha' in open(_fname).read():
+            # urllib.request.urlretrieve(_url, filename=_fname, headers=header)
+                r.attach(_fname, "maintext")
+                r.library.update()
+                print("\t" + acol.BOLD + acol.GREEN + "#YouCanHazPDF! for " + r.key() + acol.END + "\n") 
+        except :
+            # If the file can't be read this way, it's likely to be a PDF
             r.attach(_fname, "maintext")
             r.library.update()
-        else:
-            raise ValueError("CAPTCHA'ed")
+            print("\t" + acol.BOLD + acol.GREEN + "#YouCanHazPDF! " + acol.END + "for " + r.key() + "\n") 
     else:
         raise ValueError("No PDF")
