@@ -19,7 +19,7 @@ class acol:
 def get_scihub_pdf(doi):
     _root = random.choice(["sci-hub.io", "sci-hub.cc"])
     _doi_url = "http://" + _root +  "/" + doi
-    print("\t" + acol.MAGENTA + "SciHub:\t" + acol.END + _doi_url + acol.END) 
+    print("\t" + acol.MAGENTA + "SciHub:\t" + acol.END + _doi_url + acol.END)
     getpdf = re.compile(u'<iframe src = "(.+\.pdf)">')
     try :
         _url = _doi_url
@@ -30,7 +30,7 @@ def get_scihub_pdf(doi):
         _url_html_content = requests.get(_url).text
         search_result = re.search(getpdf, _url_html_content)
         if not search_result == None:
-            print("\t" + acol.BLUE + "PDF at:\t" + acol.END + search_result.group(1) + acol.END) 
+            print("\t" + acol.BLUE + "PDF at:\t" + acol.END + search_result.group(1) + acol.END)
             return search_result.group(1)
         else:
             raise ValueError("Unable to read PDF")
@@ -74,11 +74,22 @@ def is_it_roysoc(doi):
     return False
 
 def get_roysoc_pdf(doi):
-    _url = "http://onlinelibrary.wiley.com/doi/" + doi + "/pdf"
     _url_doi = "http://dx.doi.org/" + doi
     _url = requests.get(_url_doi).url
     # TODO what if not found?
     return _url + ".full-text.pdf"
+
+def is_it_pnas(doi):
+    if not re.search(re.compile(u"pnas"), doi) is None:
+        return True
+    return False
+
+def get_pnas_pdf(doi):
+    _url_doi = "http://dx.doi.org/" + doi
+    _url = requests.get(_url_doi).url
+    # TODO what if not found?
+    return _url + ".full.pdf"
+
 
 def is_it_wiley(doi):
     if not re.search(re.compile(u"10\.1111"), doi) is None:
@@ -147,7 +158,8 @@ publisher_regex = {
         "peerj": get_peerj_pdf,
         "plos": get_plos_pdf,
         "roysoc": get_roysoc_pdf,
-        "elsevier": get_elsevier_pdf}
+        "elsevier": get_elsevier_pdf,
+        "pnas": get_pnas_pdf}
 
 
 """
@@ -158,7 +170,7 @@ def download_file(url, fname):
     header = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0',}
     r = requests.get(url, stream=True, headers=header)
     with open(fname, 'wb') as f:
-        for chunk in r.iter_content(chunk_size=1024): 
+        for chunk in r.iter_content(chunk_size=1024):
             if chunk:
                 f.write(chunk)
     return fname
@@ -177,7 +189,9 @@ def detect_publisher(r):
         return "plos"
     if is_it_roysoc(r.content["DOI"]):
         return "roysoc"
-    print("\t" + acol.RED + "No publisher detected from DOI. " + acol.END) 
+    if is_it_pnas(r.content["DOI"]):
+        return "pnas"
+    print("\t" + acol.RED + "No publisher detected from DOI. " + acol.END)
     raise ValueError("I cannot find the publisher from the DOI")
 
 def get_pdf_from_ref(r):
@@ -187,17 +201,17 @@ def get_pdf_from_ref(r):
         raise KeyError("ICanHazPDF module needs a DOI")
     doi = r.content["DOI"]
     _url = None
-    print("\nTrying " + acol.BOLD + acol.GREEN + r.key() + acol.END) 
+    print("\nTrying " + acol.BOLD + acol.GREEN + r.key() + acol.END)
     try :
-        print("\t" + acol.CYAN + "Looking on Sci-Hub." + acol.END) 
+        print("\t" + acol.CYAN + "Looking on Sci-Hub." + acol.END)
         _url = get_scihub_pdf(doi)
     except :
-        print("\t" + acol.RED + "PDF not found on Sci-Hub, looking for publisher." + acol.END) 
+        print("\t" + acol.RED + "PDF not found on Sci-Hub, looking for publisher." + acol.END)
         publisher = detect_publisher(r)
-        print("\t" + acol.BLUE + "Publisher: " + acol.END + "\t" + publisher) 
+        print("\t" + acol.BLUE + "Publisher: " + acol.END + "\t" + publisher)
         _url = publisher_regex[publisher](doi)
     if not _url == None:
-        print("\t" + acol.YELLOW + "PDF URL:\t" + acol.END + _url) 
+        print("\t" + acol.YELLOW + "PDF URL:\t" + acol.END + _url)
         _fname = '.'.join(doi.split('/'))+".pdf"
         download_file(_url, _fname)
         # Sci Hub might ask captcha
@@ -208,11 +222,11 @@ def get_pdf_from_ref(r):
             # urllib.request.urlretrieve(_url, filename=_fname, headers=header)
                 r.attach(_fname, "maintext")
                 r.library.update()
-                print("\t" + acol.BOLD + acol.GREEN + "#YouCanHazPDF! for " + r.key() + acol.END + "\n") 
+                print("\t" + acol.BOLD + acol.GREEN + "#YouCanHazPDF! for " + r.key() + acol.END + "\n")
         except :
             # If the file can't be read this way, it's likely to be a PDF
             r.attach(_fname, "maintext")
             r.library.update()
-            print("\t" + acol.BOLD + acol.GREEN + "#YouCanHazPDF! " + acol.END + "for " + r.key() + "\n") 
+            print("\t" + acol.BOLD + acol.GREEN + "#YouCanHazPDF! " + acol.END + "for " + r.key() + "\n")
     else:
         raise ValueError("No PDF")
