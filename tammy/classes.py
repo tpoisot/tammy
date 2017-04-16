@@ -64,6 +64,8 @@ class library:
             force: a boolean to force the method to read all files, or only ...
         """
         r_path = join(self.config['bib_dir'], 'records')
+        if not os.path.exists(r_path):
+            os.makedirs(r_path)
         records = [f for f in listdir(r_path) if isfile(join(r_path, f))]
         for f in records:
             with open(join(r_path, f), 'r') as r_file:
